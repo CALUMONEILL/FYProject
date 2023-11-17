@@ -5,6 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class HearingTestDatabaseHelper extends SQLiteOpenHelper {
+    // Retrieved from ChatGPT and adapted based on my own knowledge of SQL database creation
+
     private static final String DATABASE_NAME = "dBhearphones";
     private static final int DATABASE_VERSION = 3;
 
@@ -14,7 +16,6 @@ public class HearingTestDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // Create your table(s)
         String createTableQuery = "CREATE TABLE ratings ("
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + "rating TEXT,"
@@ -30,3 +31,5 @@ public class HearingTestDatabaseHelper extends SQLiteOpenHelper {
     }
 
 }
+
+// https://chat.openai.com/share/da5fee58-e065-480d-a0eb-ba8999d76251
