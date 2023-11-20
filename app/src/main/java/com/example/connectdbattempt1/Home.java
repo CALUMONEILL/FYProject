@@ -28,7 +28,8 @@ public class Home extends AppCompatActivity {
         });
 
         btnHome = findViewById(R.id.btnHome);
-
+        // Retrieved from ChatGPT
+        // Adapted and implemented code from this video
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -39,3 +40,5 @@ public class Home extends AppCompatActivity {
 
     }}
 
+// https://chat.openai.com/share/24823636-4276-419c-912f-7f192c4e5710
+// https://www.youtube.com/watch?v=dm-jan0YORg

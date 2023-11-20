@@ -17,6 +17,9 @@ public class HearingTest extends AppCompatActivity {
 
     // Defining my Media Player for the basic hearing test
     private MediaPlayer mediaPlayer;
+
+    public Button btnPlay1;
+    public Button btnPlay2;
     Button btnHome;
     Button btnSubmit;
     RatingBar rtbRate;
@@ -29,7 +32,13 @@ public class HearingTest extends AppCompatActivity {
 
         // Creating the Media Player on Create. The audio file location is defined in the brackets. Retrieved from ChatGPT with some additional work to make sure the file was in the right place and the naming was correct.
         // Note: remove mp3 extension, not needed and breaks code
-        mediaPlayer = MediaPlayer.create(this, R.raw.audio);
+        mediaPlayer = MediaPlayer.create(this, R.raw.audio1);
+        btnPlay1 = findViewById(R.id.btnPlay);
+
+        //btnPlay1.setVisibility(View.VISIBLE);
+        //btnPlay2.setVisibility(View.INVISIBLE);
+
+        btnPlay2 = findViewById(R.id.btnPlay2);
         btnHome = findViewById(R.id.btnHome);
         rtbRate = findViewById(R.id.rtbRate);
         btnSubmit = findViewById(R.id.btnSubmit);
@@ -54,6 +63,11 @@ public class HearingTest extends AppCompatActivity {
                 saveDataToDatabase(rating);
 
                 rtbRate.setRating(0);
+
+                btnPlay1.setVisibility(View.INVISIBLE);
+                btnPlay2.setVisibility(View.VISIBLE);
+
+
             }
         });
 
@@ -77,18 +91,8 @@ public class HearingTest extends AppCompatActivity {
     }
 
     public void playAudio(View view) {
-        // Retrieved from ChatGPT. The following if statement pauses any audio playing from this specific button and rewinds the audio clip.
-        // It plays again. If nothing is playing it plays anyway.
-        // Commenting it out for now because I don't know if I even need it, start function is fine for now.
-        // Might be good for multiple audios playable on one page.
-
-        //if (mediaPlayer.isPlaying()) {
-            //mediaPlayer.pause();
-            //mediaPlayer.seekTo(0); // Rewind to the beginning
-        //} else {
             mediaPlayer.start();
         }
-    //}
 
     // I know that onDestroy methods are good practice from previous coding projects/work experience.
     // Customised based on ChatGPT recommendations
