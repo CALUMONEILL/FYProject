@@ -20,7 +20,8 @@ public class HearingTest extends AppCompatActivity {
     Button btnHome;
     Button btnSubmit;
     RatingBar rtbRate;
-    private HearingTestDatabaseHelper HearingTestDatabaseHelper;
+    private com.example.connectdbattempt1.HearingTestDatabaseHelper HearingTestDatabaseHelper;
+    private com.example.connectdbattempt1.HearingTestDatabaseHelper2 HearingTestDatabaseHelper2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,9 @@ public class HearingTest extends AppCompatActivity {
         btnSubmit = findViewById(R.id.btnSubmit);
 
         HearingTestDatabaseHelper = new HearingTestDatabaseHelper(this);
+        HearingTestDatabaseHelper2 = new HearingTestDatabaseHelper2(this);
+        HearingTestDatabaseHelper.clearTable("ratings");
+        HearingTestDatabaseHelper2.clearTable("ratings");
 
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +58,9 @@ public class HearingTest extends AppCompatActivity {
                 saveDataToDatabase(rating);
 
                 rtbRate.setRating(0);
+
+                Intent intent = new Intent(getApplicationContext(), HearingTest2.class);
+                startActivity(intent);
             }
         });
 
@@ -63,6 +70,8 @@ public class HearingTest extends AppCompatActivity {
         SQLiteDatabase db = HearingTestDatabaseHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
+        values.put("user", "Calum");
+        values.put("Hz", "125");
         values.put("rating", rating);
 
         long newRowId = db.insert("ratings", null, values);
