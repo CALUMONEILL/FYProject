@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/divNavigation"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Home">
+
+    <Button
+        android:id="@+id/btnUser"
+        android:layout_width="60dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#D9D9D9"
+        android:foreground="@mipmap/ic_user_foreground"
+        app:cornerRadius="200dp"
+        app:iconTint="#00232222"
+        app:iconTintMode="add"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="247dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/kumbh_sans"
+        android:text="Hearphones"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.17"
+        app:layout_constraintStart_toEndOf="@+id/btnUser"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="115dp"
+        android:layout_height="72dp"
+        android:layout_marginBottom="28dp"
+        android:backgroundTint="#1EA829"
+        android:text="Submit"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rtbRate"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <RatingBar
+        android:id="@+id/rtbRate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPrompt" />
+
+    <Button
+        android:id="@+id/btnPlay"
+        android:layout_width="90dp"
+        android:layout_height="93dp"
+        android:backgroundTint="#00D9D9D9"
+        android:elevation="500dp"
+        android:ellipsize="none"
+        android:fontFamily="@font/kumbh_sans"
+        android:foreground="@drawable/play"
+        android:foregroundTint="#000000"
+        android:foregroundTintMode="src_atop"
+        android:hapticFeedbackEnabled="true"
+        android:onClick="playAudio"
+        android:shadowColor="#171616"
+        android:shadowDx="5000"
+        android:shadowDy="5000"
+        android:shadowRadius="5000"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#3A3737"
+        android:textSize="40sp"
+        app:cornerRadius="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPlay"
+        app:strokeColor="#000000"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/txtPrompt"
+        android:layout_width="253dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/kumbh_sans"
+        android:text="How well could you hear it?"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playButton" />
+
+    <TextView
+        android:id="@+id/txtPlay"
+        android:layout_width="255dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="116dp"
+        android:fontFamily="@font/kumbh_sans"
+        android:text="Halfway There..."
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="408dp"
+        android:layout_height="94dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnStart"
+        app:layout_constraintVertical_bias="0.985">
+
+        <Button
+            android:id="@+id/btnHealth"
+            android:layout_width="80dp"
+            android:layout_height="66dp"
+            android:layout_marginEnd="84dp"
+            android:backgroundTint="#00D9D9D9"
+            android:foreground="@drawable/ear"
+            app:cornerRadius="110dp"
+            app:iconTint="#00232222"
+            app:iconTintMode="add"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="#001C1A1A"
+            app:strokeWidth="1dp" />
+
+        <Button
+            android:id="@+id/btnHome"
+            android:layout_width="67dp"
+            android:layout_height="69dp"
+            android:backgroundTint="#00D9D9D9"
+            android:foreground="@drawable/ic_home_black_24dp"
+            app:cornerRadius="110dp"
+            app:iconTint="#00232222"
+            app:iconTintMode="add"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnHealth"
+            app:layout_constraintHorizontal_bias="0.519"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.52"
+            app:strokeColor="#001C1A1A"
+            app:strokeWidth="1dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+

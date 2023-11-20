@@ -24,7 +24,7 @@ public class HearingTest extends AppCompatActivity {
     Button btnSubmit;
     RatingBar rtbRate;
     private com.example.connectdbattempt1.HearingTestDatabaseHelper HearingTestDatabaseHelper;
-    private com.example.connectdbattempt1.HearingTestDatabaseHelper2 HearingTestDatabaseHelper2;
+    //private com.example.connectdbattempt1.HearingTestDatabaseHelper2 HearingTestDatabaseHelper2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +45,9 @@ public class HearingTest extends AppCompatActivity {
         btnSubmit = findViewById(R.id.btnSubmit);
 
         HearingTestDatabaseHelper = new HearingTestDatabaseHelper(this);
-        HearingTestDatabaseHelper2 = new HearingTestDatabaseHelper2(this);
+        //HearingTestDatabaseHelper2 = new HearingTestDatabaseHelper2(this);
         HearingTestDatabaseHelper.clearTable("ratings");
-        HearingTestDatabaseHelper2.clearTable("ratings");
+       // HearingTestDatabaseHelper2.clearTable("ratings");
 
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
