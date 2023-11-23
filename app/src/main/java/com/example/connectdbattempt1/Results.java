@@ -41,55 +41,45 @@ public class Results extends AppCompatActivity {
             }
         });
 
-        // Assuming you have a ListView in your layout with the id "ratingsListView"
-        //ListView ratingsListView = findViewById(R.id.ratingsListView);
 
-        // Create or open the database
-        //SQLiteDatabase db = openOrCreateDatabase("dbHearphones", MODE_PRIVATE, null);
         SQLiteDatabase db = HearingTestDatabaseHelper.getReadableDatabase();
 
 
-        // Assuming your table has a column named "rating"
+
         String query = "SELECT rating FROM ratings";
 
-        // Execute the query
+        //Adapted this code from ChatGPT
         Cursor cursor = null;
         try {
             cursor = db.rawQuery(query, null);
 
-            // Create a list to store the ratings
             ArrayList<String> ratingsList = new ArrayList<>();
 
-            // Iterate through the cursor and add ratings to the list
             if (cursor.moveToFirst()) {
                 do {
-                    // Assuming "rating" is the column index, adjust if needed
+
                     String rating = cursor.getString(cursor.getColumnIndexOrThrow("rating"));
 
+                    // Logging for debugging purposes (not ChatGPT)
                     Log.d("RatingLog", "Rating: " + rating);
 
                     ratingsList.add(rating + "/5");
+                    // Adapted from Android Studio website
                     ratingsListView.setDivider(null);
-                    //ratingsListView.setLayoutParams(new ViewGroup.LayoutParams(
-                    //        ViewGroup.LayoutParams.MATCH_PARENT,
-                       //     51));
+
                 } while (cursor.moveToNext());
             }
 
-            // Create an ArrayAdapter to display the ratings in the ListView
             ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, ratingsList);
 
-            // Set the adapter to the ListView
             ratingsListView.setAdapter(adapter);
 
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            // Close the cursor and database in the finally block
             if (cursor != null) {
                 //cursor.close();
             }
-           // db.close();
         }
     }
 }
@@ -99,3 +89,5 @@ public class Results extends AppCompatActivity {
 
 // https://chat.openai.com/share/24823636-4276-419c-912f-7f192c4e5710
 // https://www.youtube.com/watch?v=dm-jan0YORg
+// https://chat.openai.com/share/754ce738-be72-44a9-94ff-625674e3d743
+// https://developer.android.com/reference/android/widget/ListView#setDivider(android.graphics.drawable.Drawable)
