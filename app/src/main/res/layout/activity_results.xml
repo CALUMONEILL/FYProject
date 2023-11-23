@@ -25,7 +25,7 @@
         android:id="@+id/txtSplash"
         android:layout_width="266dp"
         android:layout_height="53dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/kumbh_sans"
         android:text="Your Results"
         android:textAlignment="center"
@@ -58,6 +58,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent">
+
 
         <Button
             android:id="@+id/btnHealth"
@@ -100,9 +101,142 @@
         android:layout_width="406dp"
         android:layout_height="3dp"
         android:background="?android:attr/listDivider"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="2dp"
-        tools:layout_editor_absoluteY="628dp"
-        tools:ignore="MissingConstraints" />
+        tools:layout_editor_absoluteY="628dp" />
+
+    <ListView
+        android:id="@+id/ratingsListView"
+        android:layout_width="123dp"
+        android:layout_height="350dp"
+        android:layout_marginTop="23dp"
+        android:dividerHeight="100dp"
+        android:scrollbars="horizontal|none"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.774"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtSplash"
+        app:layout_constraintVertical_bias="0.352" />
+
+    <TextView
+        android:id="@+id/txtSplash3"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="21dp"
+        android:fontFamily="@font/kumbh_sans"
+        android:lineSpacingExtra="10sp"
+        android:text="125 Hz"
+        android:textAlignment="textStart"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/ratingsListView"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtSplash" />
+
+    <TextView
+        android:id="@+id/txtSplash4"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="21dp"
+        android:fontFamily="@font/kumbh_sans"
+        android:lineSpacingExtra="10sp"
+        android:text="250 Hz"
+        android:textAlignment="textStart"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/ratingsListView"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtSplash3" />
+
+    <TextView
+        android:id="@+id/txtSplash6"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="21dp"
+        android:fontFamily="@font/kumbh_sans"
+        android:lineSpacingExtra="10sp"
+        android:text="1000 Hz"
+        android:textAlignment="textStart"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/ratingsListView"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtSplash5" />
+
+    <TextView
+        android:id="@+id/txtSplash7"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="21dp"
+        android:fontFamily="@font/kumbh_sans"
+        android:lineSpacingExtra="10sp"
+        android:text="2000 Hz"
+        android:textAlignment="textStart"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/ratingsListView"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtSplash6" />
+
+    <TextView
+        android:id="@+id/txtSplash5"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="21dp"
+        android:fontFamily="@font/kumbh_sans"
+        android:lineSpacingExtra="10sp"
+        android:text="500 Hz"
+        android:textAlignment="textStart"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/ratingsListView"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtSplash4" />
+
+    <TextView
+        android:id="@+id/txtSplash9"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="21dp"
+        android:fontFamily="@font/kumbh_sans"
+        android:lineSpacingExtra="10sp"
+        android:text="8000 Hz"
+        android:textAlignment="textStart"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/ratingsListView"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtSplash8" />
+
+    <TextView
+        android:id="@+id/txtSplash8"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="21dp"
+        android:fontFamily="@font/kumbh_sans"
+        android:lineSpacingExtra="10sp"
+        android:text="4000 Hz"
+        android:textAlignment="textStart"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/ratingsListView"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtSplash7" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
     <!-- All icons used were retrieved from here: https://www.flaticon.com/ -->

@@ -9,7 +9,7 @@ public class HearingTestDatabaseHelper extends SQLiteOpenHelper {
     // Retrieved from ChatGPT and adapted based on my own knowledge of SQL database creation
 
     private static final String DATABASE_NAME = "dBhearphones";
-    private static final int DATABASE_VERSION = 9;
+    private static final int DATABASE_VERSION = 10;
 
     public HearingTestDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -20,7 +20,7 @@ public class HearingTestDatabaseHelper extends SQLiteOpenHelper {
 
         String createTableQuery = "CREATE TABLE ratings ("
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + "user TEXT,"
+               // + "user TEXT,"
                 + "Hz TEXT,"
                 + "rating TEXT,"
                 + "date DATETIME DEFAULT CURRENT_TIMESTAMP)";

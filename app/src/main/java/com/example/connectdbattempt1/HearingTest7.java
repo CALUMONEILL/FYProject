@@ -73,7 +73,7 @@ public class HearingTest7 extends AppCompatActivity {
         SQLiteDatabase db = HearingTestDatabaseHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put("user", "Calum");
+        //values.put("user", "Calum");
         values.put("Hz", "8000");
         values.put("rating", rating);
 

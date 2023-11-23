@@ -24,7 +24,7 @@ public class HearingTest extends AppCompatActivity {
     Button btnSubmit;
     RatingBar rtbRate;
     private com.example.connectdbattempt1.HearingTestDatabaseHelper HearingTestDatabaseHelper;
-    //private com.example.connectdbattempt1.HearingTestDatabaseHelper2 HearingTestDatabaseHelper2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public class HearingTest extends AppCompatActivity {
         //btnPlay1.setVisibility(View.VISIBLE);
         //btnPlay2.setVisibility(View.INVISIBLE);
 
-        btnPlay2 = findViewById(R.id.btnPlay2);
+
         btnHome = findViewById(R.id.btnHome);
         rtbRate = findViewById(R.id.rtbRate);
         btnSubmit = findViewById(R.id.btnSubmit);
@@ -81,7 +81,7 @@ public class HearingTest extends AppCompatActivity {
         SQLiteDatabase db = HearingTestDatabaseHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put("user", "Calum");
+        //values.put("user", "Calum");
         values.put("Hz", "125");
         values.put("rating", rating);
 
