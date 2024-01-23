@@ -28,10 +28,10 @@ public class HearingTest2 extends AppCompatActivity {
 
         // Creating the Media Player on Create. The audio file location is defined in the brackets. Retrieved from ChatGPT with some additional work to make sure the file was in the right place and the naming was correct.
         // Note: remove mp3 extension, not needed and breaks code
-        mediaPlayer = MediaPlayer.create(this, R.raw.audio2);
+        mediaPlayer = MediaPlayer.create(this, R.raw.hz250);
         btnHome = findViewById(R.id.btnHome);
         rtbRate = findViewById(R.id.rtbRate);
-        btnSubmit = findViewById(R.id.btnSubmit);
+        btnSubmit = findViewById(R.id.btnYes);
 
         HearingTestDatabaseHelper = new HearingTestDatabaseHelper(this);
         //HearingTestDatabaseHelper2.clearTable("ratings250");

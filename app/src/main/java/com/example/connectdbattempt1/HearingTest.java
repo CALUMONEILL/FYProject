@@ -2,16 +2,12 @@ package com.example.connectdbattempt1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 // Media Player import for the beep button. Retrieved from ChatGPT.
 import android.media.MediaPlayer;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RatingBar;
-import android.widget.Toast;
 
 public class HearingTest extends AppCompatActivity {
 
@@ -22,7 +18,6 @@ public class HearingTest extends AppCompatActivity {
     public Button btnPlay2;
     Button btnHome;
     Button btnSubmit;
-    RatingBar rtbRate;
     private com.example.connectdbattempt1.HearingTestDatabaseHelper HearingTestDatabaseHelper;
 
 
@@ -33,7 +28,7 @@ public class HearingTest extends AppCompatActivity {
 
         // Creating the Media Player on Create. The audio file location is defined in the brackets. Retrieved from ChatGPT with some additional work to make sure the file was in the right place and the naming was correct.
         // Note: remove mp3 extension, not needed and breaks code
-        mediaPlayer = MediaPlayer.create(this, R.raw.audio1);
+       mediaPlayer = MediaPlayer.create(this, R.raw.hz250);
         btnPlay1 = findViewById(R.id.btnPlay);
 
         //btnPlay1.setVisibility(View.VISIBLE);
@@ -41,8 +36,7 @@ public class HearingTest extends AppCompatActivity {
 
 
         btnHome = findViewById(R.id.btnHome);
-        rtbRate = findViewById(R.id.rtbRate);
-        btnSubmit = findViewById(R.id.btnSubmit);
+        btnSubmit = findViewById(R.id.btnYes);
 
         HearingTestDatabaseHelper = new HearingTestDatabaseHelper(this);
         //HearingTestDatabaseHelper2 = new HearingTestDatabaseHelper2(this);
@@ -61,6 +55,7 @@ public class HearingTest extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                /*
                 String rating = String.valueOf(rtbRate.getRating());
                 Toast.makeText(getApplicationContext(), rating, Toast.LENGTH_LONG).show();
 
@@ -70,7 +65,7 @@ public class HearingTest extends AppCompatActivity {
 
 
                 Intent intent = new Intent(getApplicationContext(), HearingTest2.class);
-                startActivity(intent);
+                startActivity(intent);*/
 
             }
         });
@@ -78,6 +73,7 @@ public class HearingTest extends AppCompatActivity {
     }
 
     private void saveDataToDatabase(String rating) {
+        /*
         SQLiteDatabase db = HearingTestDatabaseHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -93,7 +89,7 @@ public class HearingTest extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Not submitted", Toast.LENGTH_SHORT).show();
         }
-
+        */
     }
 
     public void playAudio(View view) {
