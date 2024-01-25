@@ -16,12 +16,10 @@ import java.io.IOException;
 
 public class TestYesNo extends AppCompatActivity {
 
-    private ResultsDatabaseHelper databaseHelper;
-
     // Defining my Media Player for the basic hearing test
     MediaPlayer mediaPlayer;
     private int currentAudioIndex = 0;
-    String userResponse = "";
+
     private int[] audioResources = {
             R.raw.hz250,
             R.raw.hz500,
@@ -36,7 +34,7 @@ public class TestYesNo extends AppCompatActivity {
     ProgressBar progressBar;
     int progressValue = 0;
 
-    private com.example.connectdbattempt1.ResultsDatabaseHelper ResultsDatabaseHelper;
+    private com.example.connectdbattempt1.ResponsesDBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +42,8 @@ public class TestYesNo extends AppCompatActivity {
         setContentView(R.layout.activity_hearing_testyesno);
 
         // Database helper code
-        databaseHelper = new ResultsDatabaseHelper(this);
+        dbHelper = new ResponsesDBHelper(this);
+        //ResultsDatabaseHelper.clearTable();
 
         // Creating the Media Player on Create. The audio file location is defined in the brackets. Retrieved from ChatGPT with some additional work to make sure the file was in the right place and the naming was correct.
         // Note: remove mp3 extension, not needed and breaks code
@@ -69,12 +68,30 @@ public class TestYesNo extends AppCompatActivity {
                 changeAudio();
                 increaseProgressBar();
 
-                userResponse = "Yes";
+                String userResponse = "Yes";
 
+                insertResponse(userResponse);
+            }
+
+            public void insertResponse(String userResponse) {
                 //Insert data in database for responses
-                insertUserResponse(currentAudioIndex, userResponse);
+                SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+
+                ContentValues values = new ContentValues();
+                values.put("response", userResponse);
+
+                //db.insert("TABLE_RESPONSE", null, null);
+
+                long newRowId = sqLiteDatabase.insert("responses", null, values);
+
+                if (newRowId != -1) {
+                    Toast.makeText(TestYesNo.this, "Submitted!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(TestYesNo.this, "Not submitted", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+
 
         btnNo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,18 +102,6 @@ public class TestYesNo extends AppCompatActivity {
             }
         });
 
-    }
-
-    private void insertUserResponse(int currentAudioIndex, String response) {
-        databaseHelper.insertResponse(currentAudioIndex, response);
-
-        Toast.makeText(this, "User Response Inserted: " + response, Toast.LENGTH_SHORT).show();
-
-
-
-        // .insertResponse(currentAudioIndex, response);
-
-        Toast.makeText(this, "User Response Inserted: " + response, Toast.LENGTH_SHORT).show();
     }
 
     private void increaseProgressBar() {
@@ -118,40 +123,38 @@ public class TestYesNo extends AppCompatActivity {
     public void changeAudio (){
         mediaPlayer.stop();
         mediaPlayer.release();
-            currentAudioIndex = (currentAudioIndex + 1) % audioResources.length;
-            mediaPlayer = new MediaPlayer();
-            try {
-                mediaPlayer.setDataSource(getApplicationContext(), Uri.parse("android.resource://" + getPackageName() + "/" + audioResources[currentAudioIndex]));
-                mediaPlayer.prepare();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        currentAudioIndex = (currentAudioIndex + 1) % audioResources.length;
+        mediaPlayer = new MediaPlayer();
+        try {
+            mediaPlayer.setDataSource(getApplicationContext(), Uri.parse("android.resource://" + getPackageName() + "/" + audioResources[currentAudioIndex]));
+            mediaPlayer.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-            Toast.makeText(this, "Audio Changed: " + currentAudioIndex, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Audio Changed: " + currentAudioIndex, Toast.LENGTH_SHORT).show();
+    }
+
+
+    public void playAudio (View view){
+        // Retrieved from ChatGPT. The following if statement pauses any audio playing from this specific button and rewinds the audio clip.
+        // It plays again. If nothing is playing it plays anyway.
+        // Commenting it out for now because I don't know if I even need it, start function is fine for now.
+        // Might be good for multiple audios playable on one page.
+
+        mediaPlayer.start();
+    }
+
+    // I know that onDestroy methods are good practice from previous coding projects/work experience.
+    // Customised based on ChatGPT recommendations
+    @Override
+    protected void onDestroy () {
+        super.onDestroy();
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
         }
 
 
-        public void playAudio (View view){
-            // Retrieved from ChatGPT. The following if statement pauses any audio playing from this specific button and rewinds the audio clip.
-            // It plays again. If nothing is playing it plays anyway.
-            // Commenting it out for now because I don't know if I even need it, start function is fine for now.
-            // Might be good for multiple audios playable on one page.
-
-            mediaPlayer.start();
-        }
-
-        // I know that onDestroy methods are good practice from previous coding projects/work experience.
-        // Customised based on ChatGPT recommendations
-        @Override
-        protected void onDestroy () {
-            super.onDestroy();
-            if (mediaPlayer != null) {
-                mediaPlayer.release();
-            }
-
-            if (databaseHelper != null) {
-                databaseHelper.close();
-            }
-        }
-
+    }
 }
+
