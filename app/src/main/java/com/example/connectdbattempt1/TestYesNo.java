@@ -43,7 +43,7 @@ public class TestYesNo extends AppCompatActivity {
 
         // Database helper code
         dbHelper = new ResponsesDBHelper(this);
-        //ResultsDatabaseHelper.clearTable();
+        dbHelper.clearTable("responses");
 
         // Creating the Media Player on Create. The audio file location is defined in the brackets. Retrieved from ChatGPT with some additional work to make sure the file was in the right place and the naming was correct.
         // Note: remove mp3 extension, not needed and breaks code
@@ -62,6 +62,7 @@ public class TestYesNo extends AppCompatActivity {
             }
         });
 
+
         btnYes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,6 +73,8 @@ public class TestYesNo extends AppCompatActivity {
 
                 insertResponse(userResponse);
             }
+
+
 
             public void insertResponse(String userResponse) {
                 //Insert data in database for responses
@@ -99,7 +102,29 @@ public class TestYesNo extends AppCompatActivity {
                 changeAudio();
                 increaseProgressBar();
 
+                String userResponse = "No";
+
+                insertResponse(userResponse);
             }
+
+            public void insertResponse(String userResponse) {
+                //Insert data in database for responses
+                SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+
+                ContentValues values = new ContentValues();
+                values.put("response", userResponse);
+
+                //db.insert("TABLE_RESPONSE", null, null);
+
+                long newRowId = sqLiteDatabase.insert("responses", null, values);
+
+                if (newRowId != -1) {
+                    Toast.makeText(TestYesNo.this, "Submitted!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(TestYesNo.this, "Not submitted", Toast.LENGTH_SHORT).show();
+                }
+            }
+
         });
 
     }

@@ -10,6 +10,9 @@ public class ResponsesDBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "dBhearingprofile";
     private static final int DATABASE_VERSION = 1;
 
+    public static final String responses = "responses";
+    public static final String response = "response";
+
     public ResponsesDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -22,6 +25,12 @@ public class ResponsesDBHelper extends SQLiteOpenHelper {
                 + "response TEXT,"
                 + "date DATETIME DEFAULT CURRENT_TIMESTAMP)";
         sqLiteDatabase.execSQL(createTableQuery);
+
+    }
+
+    public void clearTable(String responses) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(responses, null, null);
 
     }
 

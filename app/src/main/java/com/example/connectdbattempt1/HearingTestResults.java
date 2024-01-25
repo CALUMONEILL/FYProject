@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,14 +18,20 @@ import java.util.ArrayList;
 
 public class HearingTestResults extends AppCompatActivity {
 
+    private com.example.connectdbattempt1.ResponsesDBHelper dbHelper;
+
     Button btnHome;
-    TextView txtYes;
+    TextView txtFeedback1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hearing_test_results);
 
+        dbHelper = new ResponsesDBHelper(this);
+
         btnHome = findViewById(R.id.btnHome);
+        txtFeedback1 = findViewById(R.id.txtFeedback1);
 
         // Retrieved from ChatGPT
         // Adapted and implemented code from this video
@@ -35,8 +42,61 @@ public class HearingTestResults extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        int yesCount = countOccurrences("Yes");
+        int noCount = countOccurrences("No");
+
+        if (yesCount == 6) {
+            txtFeedback1.setText("Your results suggest that it is likely that you do not have any hearing issues.");
+        } else if (yesCount == 0) {
+            txtFeedback1.setText("Your results suggest that you may have some hearing issues.");
+        } else if (yesCount > 3 && yesCount <= 6) {
+            txtFeedback1.setText("Your results suggest that it is unlikely that you have any hearing issues.");
+        } else if (yesCount > 0 && yesCount <= 3) {
+            txtFeedback1.setText("Your results suggest that you may have some hearing issues.");
+        }
+
+        Toast.makeText(this, "Yes count: " + yesCount + ", No count: " + noCount, Toast.LENGTH_SHORT).show();
+    }
+
+    private int countOccurrences (String response){
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String[] projection = {dbHelper.response};
+        String selection = dbHelper.response + " = ?";
+        String[] selectionArgs = {response};
+
+        Cursor cursor = db.query(
+                dbHelper.responses,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+
+        int count = cursor.getCount();
+        cursor.close();
+        db.close();
+
+        return count;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
