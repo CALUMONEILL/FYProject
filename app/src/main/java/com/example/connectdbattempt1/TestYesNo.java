@@ -12,16 +12,16 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.material.snackbar.Snackbar;
-
 import java.io.IOException;
 
 public class TestYesNo extends AppCompatActivity {
 
+    private ResultsDatabaseHelper databaseHelper;
+
     // Defining my Media Player for the basic hearing test
     MediaPlayer mediaPlayer;
     private int currentAudioIndex = 0;
+    String userResponse = "";
     private int[] audioResources = {
             R.raw.hz250,
             R.raw.hz500,
@@ -35,27 +35,25 @@ public class TestYesNo extends AppCompatActivity {
     Button btnNo;
     ProgressBar progressBar;
     int progressValue = 0;
-    int yes = 0;
-    int no = 0;
-    private com.example.connectdbattempt1.HearingTestDatabaseHelper HearingTestDatabaseHelper;
+
+    private com.example.connectdbattempt1.ResultsDatabaseHelper ResultsDatabaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hearing_testyesno);
 
+        // Database helper code
+        databaseHelper = new ResultsDatabaseHelper(this);
+
         // Creating the Media Player on Create. The audio file location is defined in the brackets. Retrieved from ChatGPT with some additional work to make sure the file was in the right place and the naming was correct.
         // Note: remove mp3 extension, not needed and breaks code
-        //mediaPlayer = MediaPlayer.create(this, R.raw.hz250);
+        mediaPlayer = MediaPlayer.create(this, audioResources[currentAudioIndex]);
+
         btnHome = findViewById(R.id.btnHome);
         btnYes = findViewById(R.id.btnYes);
         btnNo = findViewById(R.id.btnNo);
         progressBar = findViewById(R.id.progressBar);
-
-        mediaPlayer = MediaPlayer.create(this, audioResources[currentAudioIndex]);
-
-        HearingTestDatabaseHelper = new HearingTestDatabaseHelper(this);
-        //HearingTestDatabaseHelper2.clearTable("ratings250");
 
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +61,6 @@ public class TestYesNo extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), Home.class);
                 startActivity(intent);
             }
-
         });
 
         btnYes.setOnClickListener(new View.OnClickListener() {
@@ -71,10 +68,12 @@ public class TestYesNo extends AppCompatActivity {
             public void onClick(View view) {
                 changeAudio();
                 increaseProgressBar();
-                //yes++;
-                //Toast.makeText(getApplicationContext(), "Value of yes: " + yes, Toast.LENGTH_SHORT).show();
-            }
 
+                userResponse = "Yes";
+
+                //Insert data in database for responses
+                insertUserResponse(currentAudioIndex, userResponse);
+            }
         });
 
         btnNo.setOnClickListener(new View.OnClickListener() {
@@ -82,12 +81,22 @@ public class TestYesNo extends AppCompatActivity {
             public void onClick(View view) {
                 changeAudio();
                 increaseProgressBar();
-                //no++;
-                //Toast.makeText(getApplicationContext(), "Value of no: " + no, Toast.LENGTH_SHORT).show();
-            }
 
+            }
         });
-        //Toast.makeText(this, no, Toast.LENGTH_SHORT).show();
+
+    }
+
+    private void insertUserResponse(int currentAudioIndex, String response) {
+        databaseHelper.insertResponse(currentAudioIndex, response);
+
+        Toast.makeText(this, "User Response Inserted: " + response, Toast.LENGTH_SHORT).show();
+
+
+
+        // .insertResponse(currentAudioIndex, response);
+
+        Toast.makeText(this, "User Response Inserted: " + response, Toast.LENGTH_SHORT).show();
     }
 
     private void increaseProgressBar() {
@@ -118,26 +127,9 @@ public class TestYesNo extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            Toast.makeText(this, "Audio Changed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Audio Changed: " + currentAudioIndex, Toast.LENGTH_SHORT).show();
         }
 
-        private void saveDataToDatabase (String rating){
-            SQLiteDatabase db = HearingTestDatabaseHelper.getWritableDatabase();
-
-            ContentValues values = new ContentValues();
-            //values.put("user", "Calum");
-            values.put("Hz", "250");
-            values.put("rating", rating);
-
-            long newRowId = db.insert("ratings", null, values);
-
-            if (newRowId != -1) {
-                Toast.makeText(this, "Submitted!", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "Not submitted", Toast.LENGTH_SHORT).show();
-            }
-
-        }
 
         public void playAudio (View view){
             // Retrieved from ChatGPT. The following if statement pauses any audio playing from this specific button and rewinds the audio clip.
@@ -155,6 +147,10 @@ public class TestYesNo extends AppCompatActivity {
             super.onDestroy();
             if (mediaPlayer != null) {
                 mediaPlayer.release();
+            }
+
+            if (databaseHelper != null) {
+                databaseHelper.close();
             }
         }
 
