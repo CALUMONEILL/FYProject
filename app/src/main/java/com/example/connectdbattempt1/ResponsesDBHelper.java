@@ -17,6 +17,9 @@ public class ResponsesDBHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    //Originally retrieved code similar to this for different functionality from ChatGPT
+    //Wrote this code myself but attaching the ChatGPT link for reference:
+    // https://chat.openai.com/share/da5fee58-e065-480d-a0eb-ba8999d76251
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 

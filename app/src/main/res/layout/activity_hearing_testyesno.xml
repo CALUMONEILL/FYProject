@@ -55,6 +55,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <!-- Logo created using website: https://looka.com/logo-maker/?gad_source=1&gclid=Cj0KCQiAwbitBhDIARIsABfFYIKMeEg99PHMVEDY9UhE-K-gLyfd_IL3VDdMUfqXU2yL8aZTAadF0PUaAvX_EALw_wcB -->
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="328dp"

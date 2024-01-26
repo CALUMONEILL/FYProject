@@ -28,9 +28,10 @@ public class LoadingResults extends AppCompatActivity {
         startTimer();
         }
 
+        //Retrieved countdowntimer code from https://abhiandroid.com/ui/countdown-timer#gsc.tab=0
     private void startTimer() {
         CountDownTimer countDownTimer = new CountDownTimer(5000, 1000) {
-            // 60 seconds countdown with 1-second intervals
+            // 5 second countdown
             @Override
             public void onTick(long millisUntilFinished) {
                 long secondsRemaining = millisUntilFinished / 1000;

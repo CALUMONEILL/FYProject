@@ -18,8 +18,10 @@ public class TestYesNo extends AppCompatActivity {
 
     // Defining my Media Player for the basic hearing test
     MediaPlayer mediaPlayer;
+    //Change audio functionality retrieved from https://chat.openai.com/c/ea8f5988-3e35-4382-90d6-2c629db0871f
     private int currentAudioIndex = 0;
 
+    // Audio files created using the website: https://www.wavtones.com/functiongenerator.php
     private int[] audioResources = {
             R.raw.hz250,
             R.raw.hz500,
@@ -129,6 +131,8 @@ public class TestYesNo extends AppCompatActivity {
 
     }
 
+    //Retrieved and adapted from ChatGPT: https://chat.openai.com/share/f9884b73-dbb4-4d8b-aa4c-6864b9f277b1
+    // And this website: https://abhiandroid.com/ui/progressbar#gsc.tab=0
     private void increaseProgressBar() {
         if (progressValue < progressBar.getMax()) {
             progressValue++;
@@ -145,6 +149,7 @@ public class TestYesNo extends AppCompatActivity {
         }
     }
 
+    //Retrieved and adapted from ChatGPT: https://chat.openai.com/c/ea8f5988-3e35-4382-90d6-2c629db0871f
     public void changeAudio (){
         mediaPlayer.stop();
         mediaPlayer.release();
@@ -162,11 +167,6 @@ public class TestYesNo extends AppCompatActivity {
 
 
     public void playAudio (View view){
-        // Retrieved from ChatGPT. The following if statement pauses any audio playing from this specific button and rewinds the audio clip.
-        // It plays again. If nothing is playing it plays anyway.
-        // Commenting it out for now because I don't know if I even need it, start function is fine for now.
-        // Might be good for multiple audios playable on one page.
-
         mediaPlayer.start();
     }
 

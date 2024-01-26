@@ -33,8 +33,7 @@ public class HearingTestResults extends AppCompatActivity {
         btnHome = findViewById(R.id.btnHome);
         txtFeedback1 = findViewById(R.id.txtFeedback1);
 
-        // Retrieved from ChatGPT
-        // Adapted and implemented code from this video
+        // Adapted and implemented code from this video: https://www.youtube.com/watch?v=dm-jan0YORg
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,9 +42,11 @@ public class HearingTestResults extends AppCompatActivity {
             }
         });
 
+        //Retrieved and adapted from ChatGPT: https://chat.openai.com/share/a8e9d077-a933-46be-9eb8-57c0c9fbb508
         int yesCount = countOccurrences("Yes");
         int noCount = countOccurrences("No");
 
+        //Simple if else if statements - my own work
         if (yesCount == 6) {
             txtFeedback1.setText("Your results suggest that it is likely that you do not have any hearing issues.");
         } else if (yesCount == 0) {
@@ -59,6 +60,8 @@ public class HearingTestResults extends AppCompatActivity {
         Toast.makeText(this, "Yes count: " + yesCount + ", No count: " + noCount, Toast.LENGTH_SHORT).show();
     }
 
+    //Retrieved and adapted from ChatGPT: https://chat.openai.com/share/a8e9d077-a933-46be-9eb8-57c0c9fbb508
+    // Had to adapt calling the database helper and how the application accesses data - ChatGPT code was not entirely correct
     private int countOccurrences (String response){
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String[] projection = {dbHelper.response};

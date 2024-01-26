@@ -47,7 +47,7 @@ public class Test extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mediaPlayer.start();
-                startTimer();
+
             }
         });
 
@@ -69,29 +69,6 @@ public class Test extends AppCompatActivity {
 
     }
 
-    private void startTimer() {
-        countDownTimer = new CountDownTimer(60000, 1000) {
-            // 60 seconds countdown with 1-second intervals
-
-            @Override
-            public void onTick(long millisUntilFinished) {
-                long secondsRemaining = millisUntilFinished / 1000;
-                timerTextView.setText("Time remaining: " + secondsRemaining + " seconds");
-            }
-
-            @Override
-            public void onFinish() {
-                timerTextView.setText("Timer finished!");
-            }
-        };
-
-        countDownTimer.start();
-    }
-
-    /*public void playAudio(View view) {
-            mediaPlayer.start();
-
-        }*/
 
     // I know that onDestroy methods are good practice from previous coding projects/work experience.
     // Customised based on ChatGPT recommendations
