@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/divNavigation"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Home">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="408dp"
+        android:layout_height="94dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintVertical_bias="0.985">
+
+        <Button
+            android:id="@+id/btnHealth"
+            android:layout_width="80dp"
+            android:layout_height="66dp"
+            android:layout_marginEnd="84dp"
+            android:backgroundTint="#00D9D9D9"
+            android:foreground="@drawable/ear"
+            app:cornerRadius="110dp"
+            app:iconTint="#00232222"
+            app:iconTintMode="add"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="#001C1A1A"
+            app:strokeWidth="1dp" />
+
+        <Button
+            android:id="@+id/btnHome"
+            android:layout_width="67dp"
+            android:layout_height="69dp"
+            android:backgroundTint="#00D9D9D9"
+            android:foreground="@drawable/ic_home_black_24dp"
+            app:cornerRadius="110dp"
+            app:iconTint="#00232222"
+            app:iconTintMode="add"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnHealth"
+            app:layout_constraintHorizontal_bias="0.519"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.52"
+            app:strokeColor="#001C1A1A"
+            app:strokeWidth="1dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Logo created using website: https://looka.com/logo-maker/?gad_source=1&gclid=Cj0KCQiAwbitBhDIARIsABfFYIKMeEg99PHMVEDY9UhE-K-gLyfd_IL3VDdMUfqXU2yL8aZTAadF0PUaAvX_EALw_wcB -->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="328dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/img_1" />
+
+    <Button
+        android:id="@+id/btnPlay"
+        android:layout_width="90dp"
+        android:layout_height="93dp"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="#00D9D9D9"
+        android:elevation="500dp"
+        android:ellipsize="none"
+        android:fontFamily="@font/kumbh_sans"
+        android:foreground="@drawable/play"
+        android:foregroundTint="#000000"
+        android:foregroundTintMode="src_atop"
+
+        android:hapticFeedbackEnabled="true"
+
+        android:onClick="playAudio"
+        android:shadowColor="#171616"
+        android:shadowDx="5000"
+        android:shadowDy="5000"
+        android:shadowRadius="5000"
+        android:text="hello"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="60sp"
+        android:visibility="visible"
+        app:cornerRadius="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPlay"
+        app:strokeColor="#A53939"
+        tools:ignore="MissingConstraints"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/txtPrompt"
+        android:layout_width="253dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/kumbh_sans"
+        android:text="How well could you hear the tone?"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.537"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPlay" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="253dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="36dp"
+        android:indeterminate="false"
+        android:max="6"
+        android:progress="0"
+        android:progressTint="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPrompt" />
+
+    <TextView
+        android:id="@+id/txtPlay"
+        android:layout_width="255dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/kumbh_sans"
+        android:text="Press the button below..."
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.525"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <RatingBar
+        android:id="@+id/rtbRate2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="115dp"
+        android:layout_height="72dp"
+        android:backgroundTint="#1EA829"
+        android:text="Submit"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rtbRate2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- All icons used were retrieved from here: https://www.flaticon.com/ -->
+
+
+
+
+

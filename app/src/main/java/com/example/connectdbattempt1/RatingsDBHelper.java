@@ -1,11 +1,10 @@
 package com.example.connectdbattempt1;
 
 import android.content.Context;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class ResponsesDBHelper extends SQLiteOpenHelper {
+public class RatingsDBHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "dBhearingprofile";
     private static final int DATABASE_VERSION = 2;
@@ -13,7 +12,7 @@ public class ResponsesDBHelper extends SQLiteOpenHelper {
     public static final String responses = "responses";
     public static final String response = "response";
 
-    public ResponsesDBHelper(Context context) {
+    public RatingsDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
