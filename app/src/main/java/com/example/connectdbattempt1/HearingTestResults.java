@@ -1,9 +1,11 @@
 package com.example.connectdbattempt1;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -27,6 +29,8 @@ public class HearingTestResults extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hearing_test_results);
+
+        startTimer();
 
         dbHelper = new ResponsesDBHelper(this);
 
@@ -57,7 +61,27 @@ public class HearingTestResults extends AppCompatActivity {
             txtFeedback1.setText("Your results suggest that you may have some hearing issues.");
         }
 
-        Toast.makeText(this, "Yes count: " + yesCount + ", No count: " + noCount, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Yes count: " + yesCount + ", No count: " + noCount, Toast.LENGTH_SHORT).show();
+        insertResult(yesCount);
+    }
+
+    public void insertResult(int yesCount) {
+        //Insert data in database for results
+        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("result", yesCount);
+
+        //db.insert("TABLE_RESPONSE", null, null);
+
+        long newRowId = sqLiteDatabase.insert("results", null, values);
+
+        if (newRowId != -1) {
+            Toast.makeText(HearingTestResults.this, "Submitted!", Toast.LENGTH_SHORT).show();
+        } else {
+            Log.d("RESULTS", "Result not submitting to dB");
+            Toast.makeText(HearingTestResults.this, "Not submitted", Toast.LENGTH_SHORT).show();
+        }
     }
 
     //Retrieved and adapted from ChatGPT: https://chat.openai.com/share/a8e9d077-a933-46be-9eb8-57c0c9fbb508
@@ -83,6 +107,24 @@ public class HearingTestResults extends AppCompatActivity {
         db.close();
 
         return count;
+    }
+
+    private void startTimer() {
+        CountDownTimer countDownTimer = new CountDownTimer(5000, 1000) {
+            // 5 second countdown
+            @Override
+            public void onTick(long millisUntilFinished) {
+                long secondsRemaining = millisUntilFinished / 1000;
+            }
+
+            @Override
+            public void onFinish() {
+                Intent intent = new Intent(getApplicationContext(), TestConfidence.class);
+                startActivity(intent);
+            }
+        };
+
+        countDownTimer.start();
     }
 }
 

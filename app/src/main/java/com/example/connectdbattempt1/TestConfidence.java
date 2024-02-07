@@ -13,9 +13,10 @@ import android.widget.RatingBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import java.io.IOException;
 
-public class TestYesNo extends AppCompatActivity {
+public class TestConfidence extends AppCompatActivity {
 
     // Defining my Media Player for the basic hearing test
     MediaPlayer mediaPlayer;
@@ -35,19 +36,21 @@ public class TestYesNo extends AppCompatActivity {
     Button btnYes;
     Button btnNo;
     ProgressBar progressBar;
+
+    RatingBar rtbRate16;
     int progressValue = 0;
 
-    private com.example.connectdbattempt1.ResponsesDBHelper dbHelper;
+    private ResponsesDBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hearing_testyesno);
+        setContentView(R.layout.activity_hearing_test_confidence);
 
         // Database helper code
         dbHelper = new ResponsesDBHelper(this);
-        dbHelper.clearResponsesTable("responses");
-
+        //dbHelper.clearResponsesTable("responses");
+        //dbHelper.clearRatingsTable("ratings");
 
         // Creating the Media Player on Create. The audio file location is defined in the brackets. Retrieved from ChatGPT with some additional work to make sure the file was in the right place and the naming was correct.
         // Note: remove mp3 extension, not needed and breaks code
@@ -57,9 +60,7 @@ public class TestYesNo extends AppCompatActivity {
         btnYes = findViewById(R.id.btnYes);
         btnNo = findViewById(R.id.btnNo);
         progressBar = findViewById(R.id.progressBar);
-
-
-
+        rtbRate16 = findViewById(R.id.rtbRate16);
 
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,42 +70,40 @@ public class TestYesNo extends AppCompatActivity {
             }
         });
 
-
         btnYes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 changeAudio();
                 increaseProgressBar();
 
-                String userResponse = "Yes";
+                String userResponse = String.valueOf(rtbRate16.getRating());
+                Toast.makeText(getApplicationContext(), userResponse, Toast.LENGTH_LONG).show();
 
                 insertResponse(userResponse);
                 //setContentView(R.layout.activity_hearing_test_confidence);
             }
-
-
 
             public void insertResponse(String userResponse) {
                 //Insert data in database for responses
                 SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
 
                 ContentValues values = new ContentValues();
-                values.put("response", userResponse);
+                values.put("rating", userResponse);
 
                 //db.insert("TABLE_RESPONSE", null, null);
 
-                long newRowId = sqLiteDatabase.insert("responses", null, values);
+                long newRowId = sqLiteDatabase.insert("ratings", null, values);
 
                 if (newRowId != -1) {
-                    Toast.makeText(TestYesNo.this, "Submitted!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TestConfidence.this, "Submitted!", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(TestYesNo.this, "Not submitted", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TestConfidence.this, "Not submitted", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
 
-        btnNo.setOnClickListener(new View.OnClickListener() {
+        /*btnNo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 changeAudio();
@@ -127,13 +126,13 @@ public class TestYesNo extends AppCompatActivity {
                 long newRowId = sqLiteDatabase.insert("responses", null, values);
 
                 if (newRowId != -1) {
-                    Toast.makeText(TestYesNo.this, "Submitted!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TestConfidence.this, "Submitted!", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(TestYesNo.this, "Not submitted", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TestConfidence.this, "Not submitted", Toast.LENGTH_SHORT).show();
                 }
             }
 
-        });
+        });*/
 
     }
 

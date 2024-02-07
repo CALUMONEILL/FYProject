@@ -8,10 +8,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class ResponsesDBHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "dBhearingprofile";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 5;
 
     public static final String responses = "responses";
     public static final String response = "response";
+
+    public static final String ratings = "ratings";
+
+    public static final String rating = "rating";
 
     public ResponsesDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -23,23 +27,36 @@ public class ResponsesDBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
-        String createTableQuery = "CREATE TABLE responses ("
+        String createResponsesTable = "CREATE TABLE responses ("
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + "response TEXT,"
                 + "date DATETIME DEFAULT CURRENT_TIMESTAMP)";
-        sqLiteDatabase.execSQL(createTableQuery);
+        sqLiteDatabase.execSQL(createResponsesTable);
+
+        String createRatingsTable = "CREATE TABLE ratings ("
+                + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + "rating TEXT,"
+                + "date DATETIME DEFAULT CURRENT_TIMESTAMP)";
+        sqLiteDatabase.execSQL(createRatingsTable);
+
+        String createResultsTable = "CREATE TABLE results ("
+                + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + "result INT,"
+                + "date DATETIME DEFAULT CURRENT_TIMESTAMP)";
+        sqLiteDatabase.execSQL(createResultsTable);
 
     }
 
-    public void clearTable(String response) {
+    public void clearResponsesTable(String response) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(responses, null, null);
-
     }
+
+
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS responses");
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS ratings");
 
         onCreate(sqLiteDatabase);
     }

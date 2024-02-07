@@ -7,10 +7,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class RatingsDBHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "dBhearingprofile";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 1;
 
-    public static final String responses = "responses";
-    public static final String response = "response";
+    public static final String ratings = "ratings";
+    public static final String rating = "rating";
 
     public RatingsDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -22,19 +22,18 @@ public class RatingsDBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
-        String createTableQuery = "CREATE TABLE responses ("
+        String createRatingsTable = "CREATE TABLE ratings ("
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + "response TEXT,"
+                + "rating TEXT,"
                 + "date DATETIME DEFAULT CURRENT_TIMESTAMP)";
-        sqLiteDatabase.execSQL(createTableQuery);
-
+        sqLiteDatabase.execSQL(createRatingsTable);
     }
 
-    public void clearTable(String response) {
+    public void clearResponsesTable(String rating) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(responses, null, null);
-
+        db.delete(ratings, null, null);
     }
+
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {

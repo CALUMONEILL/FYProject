@@ -18,7 +18,7 @@ public class HearingTestDatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String createTableQuery = "CREATE TABLE ratings ("
+        String createTableQuery = "CREATE TABLE dummy ("
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
                // + "user TEXT,"
                 + "Hz TEXT,"
