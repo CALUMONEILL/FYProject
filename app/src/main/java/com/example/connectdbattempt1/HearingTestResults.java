@@ -5,18 +5,13 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.ArrayList;
 
 public class HearingTestResults extends AppCompatActivity {
 
@@ -24,18 +19,19 @@ public class HearingTestResults extends AppCompatActivity {
 
     Button btnHome;
     TextView txtFeedback1;
+    Button btnMore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hearing_test_results);
 
-        startTimer();
-
         dbHelper = new ResponsesDBHelper(this);
+        //dbHelper.clearResultsTable("results");
 
         btnHome = findViewById(R.id.btnHome);
-        txtFeedback1 = findViewById(R.id.txtFeedback1);
+        txtFeedback1 = findViewById(R.id.txtAnalytics);
+        btnMore = findViewById(R.id.btnMore);
 
         // Adapted and implemented code from this video: https://www.youtube.com/watch?v=dm-jan0YORg
         btnHome.setOnClickListener(new View.OnClickListener() {
@@ -46,9 +42,22 @@ public class HearingTestResults extends AppCompatActivity {
             }
         });
 
+        btnMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Stats.class);
+                startActivity(intent);
+            }
+        });
+
         //Retrieved and adapted from ChatGPT: https://chat.openai.com/share/a8e9d077-a933-46be-9eb8-57c0c9fbb508
         int yesCount = countOccurrences("Yes");
         int noCount = countOccurrences("No");
+
+        String firstEntry = getFirstEntry();
+        String sixthEntry = getSixthEntry();
+
+        Toast.makeText(HearingTestResults.this, firstEntry, Toast.LENGTH_SHORT).show();
 
         //Simple if else if statements - my own work
         if (yesCount == 6) {
@@ -63,6 +72,8 @@ public class HearingTestResults extends AppCompatActivity {
 
         //Toast.makeText(this, "Yes count: " + yesCount + ", No count: " + noCount, Toast.LENGTH_SHORT).show();
         insertResult(yesCount);
+        insertLowFreq(firstEntry);
+        insertHighFreq(sixthEntry);
     }
 
     public void insertResult(int yesCount) {
@@ -71,8 +82,6 @@ public class HearingTestResults extends AppCompatActivity {
 
         ContentValues values = new ContentValues();
         values.put("result", yesCount);
-
-        //db.insert("TABLE_RESPONSE", null, null);
 
         long newRowId = sqLiteDatabase.insert("results", null, values);
 
@@ -84,9 +93,93 @@ public class HearingTestResults extends AppCompatActivity {
         }
     }
 
+    public void insertLowFreq(String sixthEntry) {
+        //Insert data in database for results
+        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT ROWID FROM results WHERE lowFreq IS NULL LIMIT 1", null);
+
+        long rowId = -1; // Initialize rowId to -1
+        if (cursor.moveToFirst()) {
+            // If cursor has data, retrieve the rowId
+            rowId = cursor.getLong(0);
+        }
+        cursor.close();
+
+        if (rowId != -1) {
+            // If a row with null 'highFreq' column was found, update it
+            ContentValues values = new ContentValues();
+            values.put("lowFreq", sixthEntry);
+
+            int rowsAffected = sqLiteDatabase.update("results", values, "ROWID = ?", new String[]{String.valueOf(rowId)});
+
+            if (rowsAffected > 0) {
+                Toast.makeText(HearingTestResults.this, "Updated first null lowFreq column!", Toast.LENGTH_SHORT).show();
+            } else {
+                Log.d("RESULTS", "Result not updating in dB");
+                Toast.makeText(HearingTestResults.this, "Update failed", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            // If no row with null 'highFreq' column was found, insert a new row
+            ContentValues values = new ContentValues();
+            values.put("lowFreq", sixthEntry);
+
+            long newRowId = sqLiteDatabase.insert("results", null, values);
+
+            if (newRowId != -1) {
+                Toast.makeText(HearingTestResults.this, "Inserted new row!", Toast.LENGTH_SHORT).show();
+            } else {
+                Log.d("RESULTS", "Result not inserting into dB");
+                Toast.makeText(HearingTestResults.this, "Insert failed", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    public void insertHighFreq(String firstEntry) {
+        //Insert data in database for results
+        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT ROWID FROM results WHERE highFreq IS NULL LIMIT 1", null);
+
+        long rowId = -1; // Initialize rowId to -1
+        if (cursor.moveToFirst()) {
+            // If cursor has data, retrieve the rowId
+            rowId = cursor.getLong(0);
+        }
+        cursor.close();
+
+        if (rowId != -1) {
+            // If a row with null 'highFreq' column was found, update it
+            ContentValues values = new ContentValues();
+            values.put("highFreq", firstEntry);
+
+            int rowsAffected = sqLiteDatabase.update("results", values, "ROWID = ?", new String[]{String.valueOf(rowId)});
+
+            if (rowsAffected > 0) {
+                Toast.makeText(HearingTestResults.this, "Updated first null highFreq column!", Toast.LENGTH_SHORT).show();
+            } else {
+                Log.d("RESULTS", "Result not updating in dB");
+                Toast.makeText(HearingTestResults.this, "Update failed", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            // If no row with null 'highFreq' column was found, insert a new row
+            ContentValues values = new ContentValues();
+            values.put("highFreq", firstEntry);
+
+            long newRowId = sqLiteDatabase.insert("results", null, values);
+
+            if (newRowId != -1) {
+                Toast.makeText(HearingTestResults.this, "Inserted new row!", Toast.LENGTH_SHORT).show();
+            } else {
+                Log.d("RESULTS", "Result not inserting into dB");
+                Toast.makeText(HearingTestResults.this, "Insert failed", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
     //Retrieved and adapted from ChatGPT: https://chat.openai.com/share/a8e9d077-a933-46be-9eb8-57c0c9fbb508
     // Had to adapt calling the database helper and how the application accesses data - ChatGPT code was not entirely correct
-    private int countOccurrences (String response){
+    private int countOccurrences(String response) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String[] projection = {dbHelper.response};
         String selection = dbHelper.response + " = ?";
@@ -109,22 +202,56 @@ public class HearingTestResults extends AppCompatActivity {
         return count;
     }
 
-    private void startTimer() {
-        CountDownTimer countDownTimer = new CountDownTimer(5000, 1000) {
-            // 5 second countdown
-            @Override
-            public void onTick(long millisUntilFinished) {
-                long secondsRemaining = millisUntilFinished / 1000;
-            }
+    private String getFirstEntry() {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String[] projection = {dbHelper.response};
 
-            @Override
-            public void onFinish() {
-                Intent intent = new Intent(getApplicationContext(), TestConfidence.class);
-                startActivity(intent);
-            }
-        };
+        Cursor cursor = db.query(
+                dbHelper.responses,
+                projection,
+                null,
+                null,
+                null,
+                null,
+                "id ASC",
+                "1"
+        );
 
-        countDownTimer.start();
+        String firstEntry = null;
+        if (cursor.moveToFirst()) {
+            firstEntry = cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.response));
+        }
+        cursor.close();
+        db.close();
+
+        return firstEntry;
+
+    }
+
+    private String getSixthEntry() {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String[] projection = {dbHelper.response};
+
+        Cursor cursor = db.query(
+                dbHelper.responses,
+                projection,
+                null,
+                null,
+                null,
+                null,
+                "id ASC",
+                "5, 1"
+        );
+
+        String sixthEntry = null;
+        if (cursor.moveToFirst()) {
+            sixthEntry = cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.response));
+        }
+        cursor.close();
+        db.close();
+
+        return sixthEntry;
+
     }
 }
 

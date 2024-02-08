@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/divNavigation"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".Home">
+
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="328dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/img_1" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="408dp"
+        android:layout_height="94dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent"
+
+        >
+
+        <Button
+            android:id="@+id/btnHome"
+            android:layout_width="67dp"
+            android:layout_height="69dp"
+            android:backgroundTint="#00D9D9D9"
+            android:foreground="@drawable/ic_home_black_24dp"
+            app:cornerRadius="110dp"
+            app:iconTint="#00232222"
+            app:iconTintMode="add"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.52"
+            app:strokeColor="#001C1A1A"
+            app:strokeWidth="1dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/txtAnalytics"
+        android:layout_width="279dp"
+        android:layout_height="50dp"
+        android:fontFamily="@font/kumbh_sans"
+        android:text="Your Past Results"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
+
+    <ListView
+        android:id="@+id/lstDate"
+        android:layout_width="198dp"
+        android:layout_height="405dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtAnalytics"
+        app:layout_constraintVertical_bias="0.674" />
+
+    <ListView
+        android:id="@+id/lstResults"
+        android:layout_width="200dp"
+        android:layout_height="407dp"
+        android:layout_marginTop="28dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/lstDate"
+        app:layout_constraintTop_toBottomOf="@+id/txtAnalytics"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- All icons used were retrieved from here: https://www.flaticon.com/ -->

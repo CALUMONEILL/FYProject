@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/divNavigation"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Home">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="408dp"
+        android:layout_height="94dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintVertical_bias="0.985">
+
+        <Button
+            android:id="@+id/btnHome"
+            android:layout_width="67dp"
+            android:layout_height="69dp"
+            android:backgroundTint="#00D9D9D9"
+            android:foreground="@drawable/ic_home_black_24dp"
+            app:cornerRadius="110dp"
+            app:iconTint="#00232222"
+            app:iconTintMode="add"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.52"
+            app:strokeColor="#001C1A1A"
+            app:strokeWidth="1dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Logo created using website: https://looka.com/logo-maker/?gad_source=1&gclid=Cj0KCQiAwbitBhDIARIsABfFYIKMeEg99PHMVEDY9UhE-K-gLyfd_IL3VDdMUfqXU2yL8aZTAadF0PUaAvX_EALw_wcB -->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="328dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/img_1" />
+
+    <Button
+        android:id="@+id/btnNo"
+        android:layout_width="155dp"
+        android:layout_height="155dp"
+        android:layout_marginEnd="40dp"
+        android:backgroundTint="#43e0d3"
+        android:text="My Hearing"
+        android:textColor="#373434"
+        app:cornerRadius="20dp"
+        app:iconTint="#4C4949"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.357" />
+
+    <Button
+        android:id="@+id/btnYes"
+        android:layout_width="155dp"
+        android:layout_height="155dp"
+        android:backgroundTint="#6fe7dd"
+        android:onClick="changeAudio"
+        android:text="Assessment"
+        android:textColor="#2B2929"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintEnd_toStartOf="@+id/btnNo"
+        app:layout_constraintHorizontal_bias="0.672"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.284" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- All icons used were retrieved from here: https://www.flaticon.com/ -->
+
+
+
+
+

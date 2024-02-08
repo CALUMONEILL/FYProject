@@ -185,6 +185,8 @@ public class TestYesNo extends AppCompatActivity {
             mediaPlayer.release();
         }
 
+        //dbHelper.close();
+
 
     }
 }

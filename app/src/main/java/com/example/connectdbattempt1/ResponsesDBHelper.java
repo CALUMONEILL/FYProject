@@ -1,6 +1,7 @@
 package com.example.connectdbattempt1;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -8,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class ResponsesDBHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "dBhearingprofile";
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 8;
 
     public static final String responses = "responses";
     public static final String response = "response";
@@ -16,6 +17,9 @@ public class ResponsesDBHelper extends SQLiteOpenHelper {
     public static final String ratings = "ratings";
 
     public static final String rating = "rating";
+
+    public static final String results = "results";
+    public static final String result = "results";
 
     public ResponsesDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -35,13 +39,15 @@ public class ResponsesDBHelper extends SQLiteOpenHelper {
 
         String createRatingsTable = "CREATE TABLE ratings ("
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + "rating TEXT,"
+                + "rating REAL,"
                 + "date DATETIME DEFAULT CURRENT_TIMESTAMP)";
         sqLiteDatabase.execSQL(createRatingsTable);
 
         String createResultsTable = "CREATE TABLE results ("
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + "result INT,"
+                + "lowFreq STRING,"
+                + "highFreq STRING,"
                 + "date DATETIME DEFAULT CURRENT_TIMESTAMP)";
         sqLiteDatabase.execSQL(createResultsTable);
 
@@ -52,6 +58,16 @@ public class ResponsesDBHelper extends SQLiteOpenHelper {
         db.delete(responses, null, null);
     }
 
+    public void clearResultsTable(String result) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(results, null, null);
+    }
+
+    public void clearRatingsTable(String rating) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(ratings, null, null);
+    }
+
 
 
     @Override
@@ -60,4 +76,5 @@ public class ResponsesDBHelper extends SQLiteOpenHelper {
 
         onCreate(sqLiteDatabase);
     }
+
 }

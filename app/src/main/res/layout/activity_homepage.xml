@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/divNavigation"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4ECCA3"
+    android:backgroundTint="#4ECCA3"
+    tools:context=".Home">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="68dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_home_black_24dp" />
+
+    <Button
+        android:id="@+id/btnHearingTest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hearing Test"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnConfidenceTest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Confidence"
+        app:layout_constraintBottom_toTopOf="@+id/btnHome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnHearingTest" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- All icons used were retrieved from here: https://www.flaticon.com/ -->

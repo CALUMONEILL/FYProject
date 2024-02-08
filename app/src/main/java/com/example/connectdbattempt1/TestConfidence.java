@@ -50,7 +50,7 @@ public class TestConfidence extends AppCompatActivity {
         // Database helper code
         dbHelper = new ResponsesDBHelper(this);
         //dbHelper.clearResponsesTable("responses");
-        //dbHelper.clearRatingsTable("ratings");
+        dbHelper.clearRatingsTable("ratings");
 
         // Creating the Media Player on Create. The audio file location is defined in the brackets. Retrieved from ChatGPT with some additional work to make sure the file was in the right place and the naming was correct.
         // Note: remove mp3 extension, not needed and breaks code
@@ -58,7 +58,7 @@ public class TestConfidence extends AppCompatActivity {
 
         btnHome = findViewById(R.id.btnHome);
         btnYes = findViewById(R.id.btnYes);
-        btnNo = findViewById(R.id.btnNo);
+        //btnNo = findViewById(R.id.btnNo);
         progressBar = findViewById(R.id.progressBar);
         rtbRate16 = findViewById(R.id.rtbRate16);
 
@@ -102,38 +102,6 @@ public class TestConfidence extends AppCompatActivity {
             }
         });
 
-
-        /*btnNo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                changeAudio();
-                increaseProgressBar();
-
-                String userResponse = "No";
-
-                insertResponse(userResponse);
-            }
-
-            public void insertResponse(String userResponse) {
-                //Insert data in database for responses
-                SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
-
-                ContentValues values = new ContentValues();
-                values.put("response", userResponse);
-
-                //db.insert("TABLE_RESPONSE", null, null);
-
-                long newRowId = sqLiteDatabase.insert("responses", null, values);
-
-                if (newRowId != -1) {
-                    Toast.makeText(TestConfidence.this, "Submitted!", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(TestConfidence.this, "Not submitted", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-        });*/
-
     }
 
     //Retrieved and adapted from ChatGPT: https://chat.openai.com/share/f9884b73-dbb4-4d8b-aa4c-6864b9f277b1
@@ -148,7 +116,7 @@ public class TestConfidence extends AppCompatActivity {
             int color = getResources().getColor(R.color.green);
             progressBar.getProgressDrawable().setColorFilter(color, android.graphics.PorterDuff.Mode.SRC_IN);
 
-            Intent intent = new Intent(getApplicationContext(), LoadingResults.class);
+            Intent intent = new Intent(getApplicationContext(), TestYesNo.class);
             startActivity(intent);
             mediaPlayer.stop();
         }
