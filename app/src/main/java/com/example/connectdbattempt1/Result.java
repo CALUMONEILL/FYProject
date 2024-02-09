@@ -8,8 +8,6 @@ public class Result {
     private String lowFreq;
     private String highFreq;
     private Date date;
-
-    // Constructors
     public Result() {}
 
     public Result(int result, String lowFreq, String highFreq) {
@@ -18,7 +16,6 @@ public class Result {
         this.highFreq = highFreq;
     }
 
-    // Getters and setters
     public int getId() {
         return id;
     }
@@ -59,7 +56,8 @@ public class Result {
         this.date = date;
     }
 
-    // toString method for debugging
+    //Adapted from ChatGPT https://chat.openai.com/share/f9054797-fd41-467a-b757-3486719d65ab
+    //Can't remember what site or forum recommended this. Not my original idea.
     @Override
     public String toString() {
         return "Result{" +

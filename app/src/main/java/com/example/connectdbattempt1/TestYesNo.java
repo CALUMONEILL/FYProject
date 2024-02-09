@@ -79,19 +79,19 @@ public class TestYesNo extends AppCompatActivity {
                 String userResponse = "Yes";
 
                 insertResponse(userResponse);
-                //setContentView(R.layout.activity_hearing_test_confidence);
+
             }
 
 
-
+            //Adapted from ChatGPT https://chat.openai.com/share/697f768c-1520-430b-aca5-49124fe28109
             public void insertResponse(String userResponse) {
-                //Insert data in database for responses
+
                 SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
 
                 ContentValues values = new ContentValues();
                 values.put("response", userResponse);
 
-                //db.insert("TABLE_RESPONSE", null, null);
+
 
                 long newRowId = sqLiteDatabase.insert("responses", null, values);
 
@@ -115,14 +115,15 @@ public class TestYesNo extends AppCompatActivity {
                 insertResponse(userResponse);
             }
 
+            //Adapted from ChatGPT https://chat.openai.com/share/697f768c-1520-430b-aca5-49124fe28109
             public void insertResponse(String userResponse) {
-                //Insert data in database for responses
+
                 SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
 
                 ContentValues values = new ContentValues();
                 values.put("response", userResponse);
 
-                //db.insert("TABLE_RESPONSE", null, null);
+
 
                 long newRowId = sqLiteDatabase.insert("responses", null, values);
 

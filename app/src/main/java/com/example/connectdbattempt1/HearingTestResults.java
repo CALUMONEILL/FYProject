@@ -76,6 +76,7 @@ public class HearingTestResults extends AppCompatActivity {
         insertHighFreq(sixthEntry);
     }
 
+    //Adapated from ChatGPT https://chat.openai.com/share/a8e9d077-a933-46be-9eb8-57c0c9fbb508
     public void insertResult(int yesCount) {
         //Insert data in database for results
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
@@ -93,21 +94,22 @@ public class HearingTestResults extends AppCompatActivity {
         }
     }
 
+    //Adapted from ChatGPT https://chat.openai.com/share/a8e9d077-a933-46be-9eb8-57c0c9fbb508
     public void insertLowFreq(String sixthEntry) {
-        //Insert data in database for results
+
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
 
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT ROWID FROM results WHERE lowFreq IS NULL LIMIT 1", null);
 
-        long rowId = -1; // Initialize rowId to -1
+        long rowId = -1;
         if (cursor.moveToFirst()) {
-            // If cursor has data, retrieve the rowId
+
             rowId = cursor.getLong(0);
         }
         cursor.close();
 
         if (rowId != -1) {
-            // If a row with null 'highFreq' column was found, update it
+
             ContentValues values = new ContentValues();
             values.put("lowFreq", sixthEntry);
 
@@ -120,7 +122,7 @@ public class HearingTestResults extends AppCompatActivity {
                 Toast.makeText(HearingTestResults.this, "Update failed", Toast.LENGTH_SHORT).show();
             }
         } else {
-            // If no row with null 'highFreq' column was found, insert a new row
+
             ContentValues values = new ContentValues();
             values.put("lowFreq", sixthEntry);
 
@@ -135,21 +137,22 @@ public class HearingTestResults extends AppCompatActivity {
         }
     }
 
+    // Adapated from ChatGPT https://chat.openai.com/share/a8e9d077-a933-46be-9eb8-57c0c9fbb508
     public void insertHighFreq(String firstEntry) {
-        //Insert data in database for results
+
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
 
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT ROWID FROM results WHERE highFreq IS NULL LIMIT 1", null);
 
-        long rowId = -1; // Initialize rowId to -1
+        long rowId = -1;
         if (cursor.moveToFirst()) {
-            // If cursor has data, retrieve the rowId
+
             rowId = cursor.getLong(0);
         }
         cursor.close();
 
         if (rowId != -1) {
-            // If a row with null 'highFreq' column was found, update it
+
             ContentValues values = new ContentValues();
             values.put("highFreq", firstEntry);
 
@@ -162,7 +165,7 @@ public class HearingTestResults extends AppCompatActivity {
                 Toast.makeText(HearingTestResults.this, "Update failed", Toast.LENGTH_SHORT).show();
             }
         } else {
-            // If no row with null 'highFreq' column was found, insert a new row
+
             ContentValues values = new ContentValues();
             values.put("highFreq", firstEntry);
 
@@ -202,6 +205,7 @@ public class HearingTestResults extends AppCompatActivity {
         return count;
     }
 
+    //Adapted from ChatGPT https://chat.openai.com/share/a8e9d077-a933-46be-9eb8-57c0c9fbb508
     private String getFirstEntry() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String[] projection = {dbHelper.response};

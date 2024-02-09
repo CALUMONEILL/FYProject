@@ -65,8 +65,6 @@ public class Home2 extends AppCompatActivity {
 
     //Retrieved and adapted from ChatGPT: https://chat.openai.com/share/f9884b73-dbb4-4d8b-aa4c-6864b9f277b1
     // And this website: https://abhiandroid.com/ui/progressbar#gsc.tab=0
-
-
     //Retrieved and adapted from ChatGPT: https://chat.openai.com/c/ea8f5988-3e35-4382-90d6-2c629db0871f
 
 

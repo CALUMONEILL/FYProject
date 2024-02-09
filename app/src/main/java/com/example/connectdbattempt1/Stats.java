@@ -1,5 +1,6 @@
 package com.example.connectdbattempt1;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -65,6 +66,8 @@ public class Stats extends AppCompatActivity {
         });
     }
 
+
+    //Adapted from ChatGPT https://chat.openai.com/share/c4a3f9c1-407e-4f6d-aa64-3df288b7a4a9
     private void fetchResults() {
         String[] projection = {
                 "result"
@@ -73,27 +76,26 @@ public class Stats extends AppCompatActivity {
         String sortOrder = "date DESC";
 
         Cursor cursor = sqLiteDatabase.query(
-                "results",  // The table to query
-                projection,  // The array of columns to return (pass null to get all)
-                null,  // The columns for the WHERE clause
-                null,  // The values for the WHERE clause
-                null,  // don't group the rows
-                null,  // don't filter by row groups
-                sortOrder,  // The sort order
-                "1"   // Limit the result to 1 row
+                "results",
+                projection,
+                null,
+                null,
+                null,
+                null,
+                sortOrder,
+                "1"
         );
 
         if (cursor != null) {
             try {
                 if (cursor.moveToFirst()) {
                     int result = cursor.getInt(cursor.getColumnIndexOrThrow("result"));
-                    // Now you can use the 'result' value as needed
+
                     Log.d("Result", "Most Recent Result: " + result);
 
-                    // Set the result value to the TextView
                     txtScoreNumber.setText(" " + result + "/6");
                 } else {
-                    // No results found
+
                     Log.d("Result", "No results found");
                 }
             } finally {
@@ -102,23 +104,24 @@ public class Stats extends AppCompatActivity {
         }
     }
 
+    //Adapted from ChatGPT https://chat.openai.com/share/c4a3f9c1-407e-4f6d-aa64-3df288b7a4a9
     private void fetchMostRecentFreqs() {
         String[] projection = {
                 "lowFreq",
                 "highFreq"
         };
 
-        String sortOrder = "date DESC"; // Sort by date in descending order to get the most recent first
+        String sortOrder = "date DESC";
 
         Cursor cursor = sqLiteDatabase.query(
-                "results",  // The table to query
-                projection,  // The array of columns to return
-                null,  // The columns for the WHERE clause
-                null,  // The values for the WHERE clause
-                null,  // don't group the rows
-                null,  // don't filter by row groups
-                sortOrder,  // The sort order
-                "1"   // Limit the result to 1 row
+                "results",
+                projection,
+                null,
+                null,
+                null,
+                null,
+                sortOrder,
+                "1"
         );
 
         if (cursor != null) {
@@ -147,7 +150,6 @@ public class Stats extends AppCompatActivity {
                     }
 
                 } else {
-                    // No results found
                     Log.d("Result", "No results found");
                 }
             } finally {
@@ -156,19 +158,20 @@ public class Stats extends AppCompatActivity {
         }
     }
 
+    //Adapted from ChatGPT https://chat.openai.com/share/c4a3f9c1-407e-4f6d-aa64-3df288b7a4a9
     private void fetchAndCalculateAverageRating() {
         String[] projection = {
                 "rating"
         };
 
         Cursor cursor = sqLiteDatabase.query(
-                "ratings",  // The table to query
-                projection,  // The array of columns to return
-                null,  // The columns for the WHERE clause
-                null,  // The values for the WHERE clause
-                null,  // don't group the rows
-                null,  // don't filter by row groups
-                null   // The sort order
+                "ratings",
+                projection,
+                null,
+                null,
+                null,
+                null,
+                null
         );
 
         if (cursor != null) {
@@ -185,8 +188,9 @@ public class Stats extends AppCompatActivity {
                     double averageRating = totalRating / ratingCount;
                     String formattedAverageRating = String.format("%.1f", averageRating);
                     txtRatingNumber.setText("  " + formattedAverageRating + "/5");
+
                 } else {
-                    // No ratings found
+
                     txtRatingNumber.setText("No ratings available");
                     Log.d("RATINGS", "Ratings crashed");
                 }

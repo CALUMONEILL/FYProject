@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class ResponsesDBHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "dBhearingprofile";
-    private static final int DATABASE_VERSION = 8;
+    private static final int DATABASE_VERSION = 9;
 
     public static final String responses = "responses";
     public static final String response = "response";
@@ -28,6 +28,7 @@ public class ResponsesDBHelper extends SQLiteOpenHelper {
     //Originally retrieved code similar to this for different functionality from ChatGPT
     //Wrote this code myself but attaching the ChatGPT link for reference:
     // https://chat.openai.com/share/da5fee58-e065-480d-a0eb-ba8999d76251
+
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
@@ -48,6 +49,7 @@ public class ResponsesDBHelper extends SQLiteOpenHelper {
                 + "result INT,"
                 + "lowFreq STRING,"
                 + "highFreq STRING,"
+                + "rating STRING,"
                 + "date DATETIME DEFAULT CURRENT_TIMESTAMP)";
         sqLiteDatabase.execSQL(createResultsTable);
 

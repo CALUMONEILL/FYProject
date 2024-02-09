@@ -1,13 +1,16 @@
 package com.example.connectdbattempt1;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -45,6 +48,9 @@ public class userData extends AppCompatActivity {
             }
         });
 
+
+        //Adapted from ChatGPT https://chat.openai.com/share/754ce738-be72-44a9-94ff-625674e3d743
+
         String query = "SELECT result FROM results";
 
         //Adapted this code from ChatGPT
@@ -78,6 +84,7 @@ public class userData extends AppCompatActivity {
             }
         }
 
+        //Adapted from ChatGPT https://chat.openai.com/share/754ce738-be72-44a9-94ff-625674e3d743
 
         String query2 = "SELECT date FROM results";
 

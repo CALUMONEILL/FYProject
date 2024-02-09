@@ -58,7 +58,6 @@ public class TestConfidence extends AppCompatActivity {
 
         btnHome = findViewById(R.id.btnHome);
         btnYes = findViewById(R.id.btnYes);
-        //btnNo = findViewById(R.id.btnNo);
         progressBar = findViewById(R.id.progressBar);
         rtbRate16 = findViewById(R.id.rtbRate16);
 
@@ -76,21 +75,23 @@ public class TestConfidence extends AppCompatActivity {
                 changeAudio();
                 increaseProgressBar();
 
+                //Rating bar code adapted from https://abhiandroid.com/ui/ratingbar#gsc.tab=0
                 String userResponse = String.valueOf(rtbRate16.getRating());
                 Toast.makeText(getApplicationContext(), userResponse, Toast.LENGTH_LONG).show();
 
                 insertResponse(userResponse);
-                //setContentView(R.layout.activity_hearing_test_confidence);
+
             }
 
+            //Adapted from ChatGPT https://chat.openai.com/share/697f768c-1520-430b-aca5-49124fe28109
             public void insertResponse(String userResponse) {
-                //Insert data in database for responses
+
                 SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
 
                 ContentValues values = new ContentValues();
                 values.put("rating", userResponse);
 
-                //db.insert("TABLE_RESPONSE", null, null);
+
 
                 long newRowId = sqLiteDatabase.insert("ratings", null, values);
 
