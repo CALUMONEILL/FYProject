@@ -9,10 +9,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.RatingBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.io.IOException;
 
 public class TestYesNo extends AppCompatActivity {
@@ -31,7 +33,7 @@ public class TestYesNo extends AppCompatActivity {
             R.raw.hz4000,
             R.raw.hz8000,
     };
-    Button btnHome;
+    FloatingActionButton btnHome;
     Button btnYes;
     Button btnNo;
     ProgressBar progressBar;
@@ -54,7 +56,7 @@ public class TestYesNo extends AppCompatActivity {
         mediaPlayer = MediaPlayer.create(this, audioResources[currentAudioIndex]);
 
         btnHome = findViewById(R.id.btnHome);
-        btnYes = findViewById(R.id.btnYes);
+        btnYes = findViewById(R.id.btnTutorial);
         btnNo = findViewById(R.id.btnNo);
         progressBar = findViewById(R.id.progressBar);
 
@@ -64,7 +66,7 @@ public class TestYesNo extends AppCompatActivity {
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Home.class);
+                Intent intent = new Intent(getApplicationContext(), Home3.class);
                 startActivity(intent);
             }
         });

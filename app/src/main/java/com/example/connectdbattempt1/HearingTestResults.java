@@ -13,11 +13,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 public class HearingTestResults extends AppCompatActivity {
 
     private com.example.connectdbattempt1.ResponsesDBHelper dbHelper;
 
-    Button btnHome;
+    FloatingActionButton btnHome;
     TextView txtFeedback1;
     Button btnMore;
 
@@ -30,14 +32,14 @@ public class HearingTestResults extends AppCompatActivity {
         //dbHelper.clearResultsTable("results");
 
         btnHome = findViewById(R.id.btnHome);
-        txtFeedback1 = findViewById(R.id.txtAnalytics);
+        txtFeedback1 = findViewById(R.id.txtFeedback);
         btnMore = findViewById(R.id.btnMore);
 
         // Adapted and implemented code from this video: https://www.youtube.com/watch?v=dm-jan0YORg
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Home.class);
+                Intent intent = new Intent(getApplicationContext(), Home3.class);
                 startActivity(intent);
             }
         });

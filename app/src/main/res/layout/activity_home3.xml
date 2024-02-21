@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/divNavigation"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_5"
+    tools:context=".Home">
+
+
+    <!-- Logo created using website: https://looka.com/logo-maker/?gad_source=1&gclid=Cj0KCQiAwbitBhDIARIsABfFYIKMeEg99PHMVEDY9UhE-K-gLyfd_IL3VDdMUfqXU2yL8aZTAadF0PUaAvX_EALw_wcB -->
+
+    <Button
+        android:id="@+id/btnHearing"
+        android:layout_width="396dp"
+        android:layout_height="97dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#2EDCCD"
+        android:onClick="changeAudio"
+        android:text="My Hearing"
+        android:textAlignment="textEnd"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:cornerRadius="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAssessments" />
+
+    <Button
+        android:id="@+id/btnAssessments"
+        android:layout_width="396dp"
+        android:layout_height="97dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#51E1D5"
+        android:text="Assessments"
+        android:textAlignment="textEnd"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:cornerRadius="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnTutorial" />
+
+    <TextView
+        android:id="@+id/txtAnalytics2"
+        android:layout_width="279dp"
+        android:layout_height="50dp"
+        android:fontFamily="@font/kumbh_sans"
+        android:text="Welcome"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="328dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/img_1" />
+
+    <Button
+        android:id="@+id/btnTutorial"
+        android:layout_width="396dp"
+        android:layout_height="97dp"
+        android:layout_marginTop="36dp"
+        android:backgroundTint="#73E7DE"
+        android:text="Get Started"
+        android:textAlignment="textEnd"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:cornerRadius="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtAnalytics2" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnHome1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:backgroundTint="#E2DCDE"
+        app:fabCustomSize="75dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnHearing"
+        app:layout_constraintVertical_bias="0.457"
+        app:srcCompat="@drawable/ic_home_black_24dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- All icons used were retrieved from here: https://www.flaticon.com/ -->
+
+
+
+
+

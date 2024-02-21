@@ -22,7 +22,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnTutorial"
+        app:layout_constraintTop_toBottomOf="@+id/btnYes"
         app:layout_constraintVertical_bias="0.932"
         app:srcCompat="@drawable/ic_home_black_24dp" />
 
@@ -126,14 +126,14 @@
         android:textStyle="bold"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnTutorial"
+        app:layout_constraintEnd_toStartOf="@+id/btnYes"
         app:layout_constraintHorizontal_bias="0.779"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtPrompt"
         app:layout_constraintVertical_bias="0.238" />
 
     <Button
-        android:id="@+id/btnTutorial"
+        android:id="@+id/btnYes"
         android:layout_width="115dp"
         android:layout_height="115dp"
         android:layout_marginEnd="72dp"
@@ -147,6 +147,99 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtPrompt"
         app:layout_constraintVertical_bias="0.238" />
+
+    <View
+        android:id="@+id/blur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#C3385149"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/txtInfo1"
+        android:layout_width="303dp"
+        android:layout_height="338dp"
+        android:layout_marginTop="4dp"
+        android:background="#FFFDFD"
+        android:fontFamily="@font/kumbh_sans"
+        android:text="This is the Hearing Test page."
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.525"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/txtInfo2"
+        android:layout_width="286dp"
+        android:layout_height="92dp"
+        android:layout_marginTop="32dp"
+        android:background="#FFFDFD"
+        android:fontFamily="@font/kumbh_sans"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/txtPrompt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPlay"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btnNext2"
+        android:layout_width="200dp"
+        android:layout_height="91dp"
+        android:backgroundTint="#2EDCCD"
+        android:onClick="changeAudio"
+        android:text="Next"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnNext3"
+        android:layout_width="200dp"
+        android:layout_height="91dp"
+        android:backgroundTint="#2EDCCD"
+        android:onClick="changeAudio"
+        android:text="Next"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnNext4"
+        android:layout_width="200dp"
+        android:layout_height="91dp"
+        android:backgroundTint="#2EDCCD"
+        android:onClick="changeAudio"
+        android:text="Next"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
     <!-- All icons used were retrieved from here: https://www.flaticon.com/ -->

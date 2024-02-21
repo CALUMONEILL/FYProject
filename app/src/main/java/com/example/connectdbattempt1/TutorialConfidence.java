@@ -10,15 +10,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.IOException;
 
-public class TestConfidence extends AppCompatActivity {
+public class TutorialConfidence extends AppCompatActivity {
 
     // Defining my Media Player for the basic hearing test
     MediaPlayer mediaPlayer;
@@ -36,23 +38,26 @@ public class TestConfidence extends AppCompatActivity {
     };
     FloatingActionButton btnHome;
     Button btnYes;
-    Button btnNo;
+
     ProgressBar progressBar;
 
     RatingBar rtbRate16;
     int progressValue = 0;
 
-    private ResponsesDBHelper dbHelper;
+    Button btnNext2;
+    Button btnNext3;
+    Button btnNext4;
+    View blur;
+    TextView txtInfo1;
+    TextView txtInfo2;
+    int countNext = 0;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hearing_test_confidence);
-
-        // Database helper code
-        dbHelper = new ResponsesDBHelper(this);
-        //dbHelper.clearResponsesTable("responses");
-        dbHelper.clearRatingsTable("ratings");
+        setContentView(R.layout.activity_hearing_tutorial_confidence);
 
         // Creating the Media Player on Create. The audio file location is defined in the brackets. Retrieved from ChatGPT with some additional work to make sure the file was in the right place and the naming was correct.
         // Note: remove mp3 extension, not needed and breaks code
@@ -60,8 +65,60 @@ public class TestConfidence extends AppCompatActivity {
 
         btnHome = findViewById(R.id.btnHome);
         btnYes = findViewById(R.id.btnYes);
+        btnYes.setEnabled(false);
         progressBar = findViewById(R.id.progressBar);
         rtbRate16 = findViewById(R.id.rtbRate16);
+        rtbRate16.setEnabled(false);
+        blur = findViewById(R.id.blur);
+
+        btnNext2 = findViewById(R.id.btnNext2);
+        btnNext3 = findViewById(R.id.btnNext3);
+        btnNext4 = findViewById(R.id.btnNext4);
+
+        txtInfo1 = findViewById(R.id.txtInfo1);
+        txtInfo2 = findViewById(R.id.txtInfo2);
+
+
+        txtInfo1.setBackground(ContextCompat.getDrawable(this, R.drawable.rounded_corners));
+
+        txtInfo2.setText("Here, you will listen to a number of audio frequencies which cover the human hearing range");
+        txtInfo2.setBackground(ContextCompat.getDrawable(this, R.drawable.rounded_corners));
+
+        btnNext2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                txtInfo2.setText("Press the play button to hear the first tone...");
+
+                countNext++;
+
+                if (countNext == 2) {
+                    blur.setVisibility(View.INVISIBLE);
+                    txtInfo1.setVisibility(View.INVISIBLE);
+                    txtInfo2.setVisibility(View.INVISIBLE);
+                    btnNext2.setVisibility(View.INVISIBLE);
+                    countNext = 0;
+                }
+            }
+        });
+
+        btnNext3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                txtInfo2.setText("Now, rate how well you could hear the tone out of five, and click Submit");
+
+                countNext++;
+
+                if (countNext == 2) {
+                    blur.setVisibility(View.INVISIBLE);
+                    txtInfo1.setVisibility(View.INVISIBLE);
+                    txtInfo2.setVisibility(View.INVISIBLE);
+                    btnNext3.setVisibility(View.INVISIBLE);
+                    countNext = 0;
+                    rtbRate16.setEnabled(true);
+                    btnYes.setEnabled(true);
+                }
+            }
+        });
 
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,33 +134,36 @@ public class TestConfidence extends AppCompatActivity {
                 changeAudio();
                 increaseProgressBar();
 
-                //Rating bar code adapted from https://abhiandroid.com/ui/ratingbar#gsc.tab=0
-                String userResponse = String.valueOf(rtbRate16.getRating());
-                Toast.makeText(getApplicationContext(), userResponse, Toast.LENGTH_LONG).show();
+                blur.setVisibility(View.VISIBLE);
 
-                insertResponse(userResponse);
+                txtInfo1.setVisibility(View.VISIBLE);
+                txtInfo2.setVisibility(View.VISIBLE);
+
+                btnNext4.setVisibility(View.VISIBLE);
+                txtInfo1.setText("Great!");
+                txtInfo2.setText("As you would progress through the test, you can submit a rating for each tone");
+
 
             }
 
-            //Adapted from ChatGPT https://chat.openai.com/share/697f768c-1520-430b-aca5-49124fe28109
-            public void insertResponse(String userResponse) {
+        });
 
-                SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+        btnNext4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                txtInfo2.setText("Click next to return to the homepage");
 
-                ContentValues values = new ContentValues();
-                values.put("rating", userResponse);
+                countNext++;
 
+                if (countNext == 2) {
+                    Intent intent = new Intent(getApplicationContext(), Home3.class);
+                    startActivity(intent);
 
-
-                long newRowId = sqLiteDatabase.insert("ratings", null, values);
-
-                if (newRowId != -1) {
-                    Toast.makeText(TestConfidence.this, "Submitted!", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(TestConfidence.this, "Not submitted", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
+
 
     }
 
@@ -138,12 +198,21 @@ public class TestConfidence extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        Toast.makeText(this, "Audio Changed: " + currentAudioIndex, Toast.LENGTH_SHORT).show();
+
     }
 
 
     public void playAudio (View view){
         mediaPlayer.start();
+
+        blur.setVisibility(View.VISIBLE);
+
+        txtInfo1.setVisibility(View.VISIBLE);
+        txtInfo2.setVisibility(View.VISIBLE);
+
+        btnNext3.setVisibility(View.VISIBLE);
+        txtInfo1.setText("Well done!");
+        txtInfo2.setText("It's O.K. if you couldn't quite hear it");
     }
 
     // I know that onDestroy methods are good practice from previous coding projects/work experience.

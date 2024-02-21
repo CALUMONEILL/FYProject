@@ -5,103 +5,71 @@
     android:id="@+id/divNavigation"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#68D3B0"
     tools:context=".Home">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="408dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
-        app:layout_constraintStart_toStartOf="parent">
 
+    <!-- Logo created using website: https://looka.com/logo-maker/?gad_source=1&gclid=Cj0KCQiAwbitBhDIARIsABfFYIKMeEg99PHMVEDY9UhE-K-gLyfd_IL3VDdMUfqXU2yL8aZTAadF0PUaAvX_EALw_wcB -->
 
-        <Button
-            android:id="@+id/btnHealth"
-            android:layout_width="80dp"
-            android:layout_height="66dp"
-            android:layout_marginEnd="84dp"
-            android:backgroundTint="#00D9D9D9"
-            android:foreground="@drawable/ear"
-            app:cornerRadius="110dp"
-            app:iconTint="#00232222"
-            app:iconTintMode="add"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:strokeColor="#001C1A1A"
-            app:strokeWidth="1dp" />
-
-        <Button
-            android:id="@+id/btnHome"
-            android:layout_width="67dp"
-            android:layout_height="69dp"
-            android:backgroundTint="#00D9D9D9"
-            android:foreground="@drawable/ic_home_black_24dp"
-            app:cornerRadius="110dp"
-            app:iconTint="#00232222"
-            app:iconTintMode="add"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnHealth"
-            app:layout_constraintHorizontal_bias="0.519"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.52"
-            app:strokeColor="#001C1A1A"
-            app:strokeWidth="1dp" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginBottom="100dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/txtAnalytics"
-        android:layout_width="310dp"
-        android:layout_height="149dp"
-        android:layout_marginTop="72dp"
-        android:fontFamily="@font/kumbh_sans"
-        android:text="Your Results"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
-
-    <ImageView
-        android:id="@+id/imageView2"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:clickable="true"
+        app:backgroundTint="#E2DCDE"
+        app:fabCustomSize="75dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnMore"
+        app:layout_constraintVertical_bias="0.928"
+        app:srcCompat="@drawable/ic_home_black_24dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="328dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/img" />
+        app:srcCompat="@drawable/img_1" />
+
+    <TextView
+        android:id="@+id/txtFeedback"
+        android:layout_width="248dp"
+        android:layout_height="149dp"
+        android:layout_marginTop="112dp"
+        android:fontFamily="@font/kumbh_sans"
+        android:text="Results"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
         android:id="@+id/btnMore"
-        android:layout_width="192dp"
-        android:layout_height="122dp"
-        android:text="Learn more"
+        android:layout_width="200dp"
+        android:layout_height="91dp"
+        android:layout_marginTop="48dp"
+        android:backgroundTint="#2EDCCD"
+        android:onClick="changeAudio"
+        android:text="Learn More"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:cornerRadius="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/divider"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtAnalytics" />
+        app:layout_constraintTop_toBottomOf="@+id/txtFeedback" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
     <!-- All icons used were retrieved from here: https://www.flaticon.com/ -->
+
+
+
+
+

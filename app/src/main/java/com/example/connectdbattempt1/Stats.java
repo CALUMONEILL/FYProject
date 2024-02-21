@@ -13,14 +13,17 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 public class Stats extends AppCompatActivity {
 
     private ResponsesDBHelper dbHelper;
     private SQLiteDatabase sqLiteDatabase;
-    Button btnHome;
+    FloatingActionButton btnHome;
     TextView txtFeedback1;
     TextView txtScoreNumber;
     TextView txtStruggle;
+
     TextView txtDesc2;
     TextView txtRatingNumber;
 
@@ -40,19 +43,19 @@ public class Stats extends AppCompatActivity {
         txtStruggle = findViewById(R.id.txtStruggle);
         txtRatingNumber = findViewById(R.id.txtRatingNumber);
         btnAll = findViewById(R.id.btnAll);
+        btnHome = findViewById(R.id.btnHome);
 
         fetchResults();
         fetchMostRecentFreqs();
         fetchAndCalculateAverageRating();
 
-        btnHome = findViewById(R.id.btnHome);
         txtFeedback1 = findViewById(R.id.txtAnalytics);
 
         // Adapted and implemented code from this video: https://www.youtube.com/watch?v=dm-jan0YORg
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Home.class);
+                Intent intent = new Intent(getApplicationContext(), Home3.class);
                 startActivity(intent);
             }
         });
@@ -191,7 +194,7 @@ public class Stats extends AppCompatActivity {
 
                 } else {
 
-                    txtRatingNumber.setText("No ratings available");
+                    txtRatingNumber.setText(" ~/6");
                     Log.d("RATINGS", "Ratings crashed");
                 }
             } finally {
@@ -200,26 +203,6 @@ public class Stats extends AppCompatActivity {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // https://chat.openai.com/share/24823636-4276-419c-912f-7f192c4e5710
 // https://www.youtube.com/watch?v=dm-jan0YORg

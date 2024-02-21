@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -30,7 +29,7 @@ public class Results extends AppCompatActivity {
         ratingsListView = findViewById(R.id.ratingsListView);
         HearingTestDatabaseHelper = new HearingTestDatabaseHelper(this);
 
-        btnHome = findViewById(R.id.btnHome);
+        btnHome = findViewById(R.id.btnHomeScreen);
         // Retrieved from ChatGPT
         // Adapted and implemented code from this video
         btnHome.setOnClickListener(new View.OnClickListener() {

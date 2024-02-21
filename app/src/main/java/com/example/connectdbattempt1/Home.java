@@ -16,7 +16,7 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
 
-        btnHome = findViewById(R.id.btnHome);
+        btnHome = findViewById(R.id.btnHomeScreen);
         btnHearingTest = findViewById(R.id.btnHearingTest);
         btnConfidenceTest = findViewById(R.id.btnConfidenceTest);
 

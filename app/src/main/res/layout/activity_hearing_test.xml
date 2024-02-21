@@ -91,7 +91,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnYes"
+        app:layout_constraintBottom_toTopOf="@+id/btnTutorial"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -99,7 +99,7 @@
         app:layout_constraintVertical_bias="0.217" />
 
     <Button
-        android:id="@+id/btnYes"
+        android:id="@+id/btnTutorial"
         android:layout_width="115dp"
         android:layout_height="72dp"
         android:layout_marginBottom="36dp"
@@ -151,7 +151,7 @@
             app:strokeWidth="1dp" />
 
         <Button
-            android:id="@+id/btnHome"
+            android:id="@+id/btnHomeScreen"
             android:layout_width="67dp"
             android:layout_height="69dp"
             android:backgroundTint="#00D9D9D9"

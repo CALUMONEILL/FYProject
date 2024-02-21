@@ -7,50 +7,48 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Home2 extends AppCompatActivity {
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-    Button btnHome;
-    Button btnYes;
-    Button btnNo;
+public class Assessments extends AppCompatActivity {
+
+
+    FloatingActionButton btnHome1;
+    Button btnHearingTest;
+    Button btnConfidenceTest;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home2);
+        setContentView(R.layout.activity_assessments);
 
-        btnHome = findViewById(R.id.btnHomeScreen);
-        btnYes = findViewById(R.id.btnTutorial);
-        btnNo = findViewById(R.id.btnNo);
-
-
+        btnHome1 = findViewById(R.id.btnHome1);
+        btnHearingTest = findViewById(R.id.btnHearingTest);
+        btnConfidenceTest = findViewById(R.id.btnConfidenceTest);
 
 
-
-        btnHome.setOnClickListener(new View.OnClickListener() {
+        btnHome1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Home.class);
+                Intent intent = new Intent(getApplicationContext(), Home3.class);
                 startActivity(intent);
             }
         });
 
+        btnHearingTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), TestYesNo.class);
+                startActivity(intent);
+            }
+        });
 
-        btnYes.setOnClickListener(new View.OnClickListener() {
+        btnConfidenceTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), TestConfidence.class);
                 startActivity(intent);
             }
-        });
-
-
-        btnNo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), userData.class);
-                startActivity(intent);
-            }
-
         });
 
     }

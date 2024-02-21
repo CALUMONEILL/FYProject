@@ -5,8 +5,52 @@
     android:id="@+id/divNavigation"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@drawable/img_5"
     tools:context=".Home">
+
+    <TextView
+        android:id="@+id/txtAnalytics4"
+        android:layout_width="178dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/kumbh_sans"
+        android:text="Hearing Test Score"
+        android:textAlignment="textStart"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtAnalytics" />
+
+    <TextView
+        android:id="@+id/txtAnalytics3"
+        android:layout_width="190dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/kumbh_sans"
+        android:text="Date"
+        android:textAlignment="textStart"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/txtAnalytics4"
+        app:layout_constraintHorizontal_bias="0.833"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtAnalytics" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
+        android:clickable="true"
+        app:backgroundTint="#E2DCDE"
+        app:fabCustomSize="75dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lstDate"
+        app:layout_constraintVertical_bias="0.949"
+        app:srcCompat="@drawable/ic_home_black_24dp" />
 
     <ImageView
         android:id="@+id/imgLogo"
@@ -18,36 +62,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/img_1" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="408dp"
-        android:layout_height="94dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
-        app:layout_constraintStart_toStartOf="parent"
-
-        >
-
-        <Button
-            android:id="@+id/btnHome"
-            android:layout_width="67dp"
-            android:layout_height="69dp"
-            android:backgroundTint="#00D9D9D9"
-            android:foreground="@drawable/ic_home_black_24dp"
-            app:cornerRadius="110dp"
-            app:iconTint="#00232222"
-            app:iconTintMode="add"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.52"
-            app:strokeColor="#001C1A1A"
-            app:strokeWidth="1dp" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/txtAnalytics"
@@ -63,27 +77,25 @@
         app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
 
     <ListView
-        android:id="@+id/lstDate"
-        android:layout_width="198dp"
-        android:layout_height="405dp"
+        android:id="@+id/lstResults"
+        android:layout_width="174dp"
+        android:layout_height="323dp"
+        android:layout_marginTop="8dp"
         android:background="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtAnalytics"
-        app:layout_constraintVertical_bias="0.674" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toEndOf="@+id/lstDate"
+        app:layout_constraintTop_toBottomOf="@+id/txtAnalytics4" />
 
     <ListView
-        android:id="@+id/lstResults"
-        android:layout_width="200dp"
-        android:layout_height="407dp"
-        android:layout_marginTop="28dp"
+        android:id="@+id/lstDate"
+        android:layout_width="210dp"
+        android:layout_height="323dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
         android:background="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/lstDate"
-        app:layout_constraintTop_toBottomOf="@+id/txtAnalytics"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtAnalytics3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
     <!-- All icons used were retrieved from here: https://www.flaticon.com/ -->

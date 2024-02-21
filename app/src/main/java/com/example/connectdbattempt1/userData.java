@@ -14,13 +14,18 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class userData extends AppCompatActivity {
 
     private ResponsesDBHelper dbHelper;
     private SQLiteDatabase sqLiteDatabase;
-    Button btnHome;
+    FloatingActionButton btnHome;
     ListView lstResults;
     ListView lstDate;
 
@@ -43,7 +48,7 @@ public class userData extends AppCompatActivity {
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Home.class);
+                Intent intent = new Intent(getApplicationContext(), Home3.class);
                 startActivity(intent);
             }
         });
@@ -98,9 +103,19 @@ public class userData extends AppCompatActivity {
             if (cursor2.moveToFirst()) {
                 do {
 
-                    String dates = cursor2.getString(cursor2.getColumnIndexOrThrow("date"));
+                    //String dates = cursor2.getString(cursor2.getColumnIndexOrThrow("date"));
 
-                    dateList.add(dates);
+                    String dateString = cursor2.getString(cursor2.getColumnIndexOrThrow("date"));
+
+                    // Date formatting retrieved from ChatGPT https://chat.openai.com/share/dd4361b6-8010-4e39-8ed7-dad17c7edb2d
+                    SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                    SimpleDateFormat outputFormat = new SimpleDateFormat("dd MMMM yy", Locale.getDefault());
+                    Date date = inputFormat.parse(dateString);
+                    String formattedDate = outputFormat.format(date);
+
+                    dateList.add(formattedDate);
+
+                    //dateList.add(dates);
                     // Adapted from Android Studio website
                     lstDate.setDivider(null);
 
