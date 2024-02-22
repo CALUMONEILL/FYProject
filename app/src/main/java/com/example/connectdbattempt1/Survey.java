@@ -1,13 +1,17 @@
 package com.example.connectdbattempt1;
 
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,149 +19,51 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class Survey extends AppCompatActivity {
 
-    int answerCount = 0;
-    Button btnSubmitSurvey;
+    private RadioGroup[] radioGroups = new RadioGroup[4]; // Array to hold RadioGroups
+    private Button submitButton;
+    private com.example.connectdbattempt1.ResponsesDBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey);
+        dbHelper = new ResponsesDBHelper(this);
+        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase(); // This will create or open the existing database
 
-        LinearLayout surveyLayout = findViewById(R.id.survey_layout);
-        btnSubmitSurvey = findViewById(R.id.btnSubmitSurvey);
-        btnSubmitSurvey.setEnabled(false);
+        // Initialize RadioGroups
+        radioGroups[0] = findViewById(R.id.radio_group1);
+        radioGroups[1] = findViewById(R.id.radio_group2);
+        // Initialize RadioGroups for other questions
 
-        // Question 1
-        TextView question1 = new TextView(this);
-        question1.setText("How often do you experience difficulty hearing in noisy environments?");
-        surveyLayout.addView(question1);
+        submitButton = findViewById(R.id.btnSubmitSurvey);
 
-        RadioGroup answerGroup1 = new RadioGroup(this);
-        String[] choices1 = {"Rarely", "Occasionally", "Frequently", "Almost always"};
-        for (String choice : choices1) {
-            RadioButton radioButton = new RadioButton(this);
-            radioButton.setText(choice);
-            answerGroup1.addView(radioButton);
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Get selected radio button for each question
+                String answer1 = getSelectedRadioButtonText(radioGroups[0]);
+                String answer2 = getSelectedRadioButtonText(radioGroups[1]);
+                // Get selected radio buttons for other questions
+
+                // Insert responses into the database
+                ContentValues values = new ContentValues();
+                values.put("Answer1", answer1);
+                values.put("Answer2", answer2);
+                // Put values for other questions
+                sqLiteDatabase.insert("SurveyResponses", null, values);
+
+                Toast.makeText(Survey.this, "Survey submitted!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    // Helper method to get the text of the selected RadioButton in a RadioGroup
+    private String getSelectedRadioButtonText(RadioGroup radioGroup) {
+        int selectedId = radioGroup.getCheckedRadioButtonId();
+        if (selectedId != -1) {
+            RadioButton selectedRadioButton = findViewById(selectedId);
+            return selectedRadioButton.getText().toString();
         }
-        surveyLayout.addView(answerGroup1);
-
-        // Question 2
-        TextView question2 = new TextView(this);
-        question2.setText("How often do you find yourself asking others to repeat themselves during conversations?");
-        surveyLayout.addView(question2);
-
-
-        RadioGroup answerGroup2 = new RadioGroup(this);
-        String[] choices2 = {"Rarely", "Occasionally", "Frequently", "Almost always"};
-        for (String choice : choices2) {
-            RadioButton radioButton = new RadioButton(this);
-            radioButton.setText(choice);
-            answerGroup2.addView(radioButton);
-        }
-        surveyLayout.addView(answerGroup2);
-
-        // Question 3
-        TextView question3 = new TextView(this);
-        question3.setText("How often does your hearing difficulty impact your daily activities or quality of life?");
-        surveyLayout.addView(question3);
-
-
-        RadioGroup answerGroup3 = new RadioGroup(this);
-        String[] choices3 = {"Rarely", "Occasionally", "Frequently", "Almost always"};
-        for (String choice : choices3) {
-            RadioButton radioButton = new RadioButton(this);
-            radioButton.setText(choice);
-            answerGroup3.addView(radioButton);
-        }
-        surveyLayout.addView(answerGroup3);
-
-        // Question 4
-        TextView question4 = new TextView(this);
-        question4.setText("How often does your hearing difficulty impact your daily activities or quality of life?");
-        surveyLayout.addView(question4);
-
-
-        RadioGroup answerGroup4 = new RadioGroup(this);
-        String[] choices4 = {"Rarely", "Occasionally", "Frequently", "Almost always"};
-        for (String choice : choices4) {
-            RadioButton radioButton = new RadioButton(this);
-            radioButton.setText(choice);
-            answerGroup4.addView(radioButton);
-        }
-        surveyLayout.addView(answerGroup4);
-
-        TextView question5 = new TextView(this);
-        question5.setText("Please indicate how often you experience hearing difficulties in the following situations:");
-        surveyLayout.addView(question5);
-
-        TextView question56 = new TextView(this);
-        question56.setText("Watching television or movies");
-        surveyLayout.addView(question56);
-
-        RadioGroup answerGroup56 = new RadioGroup(this);
-        String[] choices56 = {"Rarely", "Occasionally", "Frequently", "Almost always"};
-        for (String choice : choices56) {
-            RadioButton radioButton = new RadioButton(this);
-            radioButton.setText(choice);
-            answerGroup56.addView(radioButton);
-        }
-        surveyLayout.addView(answerGroup56);
-
-        TextView question57 = new TextView(this);
-        question57.setText("Participating in group conversations");
-        surveyLayout.addView(question57);
-
-        RadioGroup answerGroup57 = new RadioGroup(this);
-        String[] choices57 = {"Rarely", "Occasionally", "Frequently", "Almost always"};
-        for (String choice : choices57) {
-            RadioButton radioButton = new RadioButton(this);
-            radioButton.setText(choice);
-            answerGroup57.addView(radioButton);
-        }
-        surveyLayout.addView(answerGroup57);
-
-        TextView question58 = new TextView(this);
-        question58.setText("Talking on the phone");
-        surveyLayout.addView(question58);
-
-        RadioGroup answerGroup58 = new RadioGroup(this);
-        String[] choices58 = {"Rarely", "Occasionally", "Frequently", "Almost always"};
-        for (String choice : choices58) {
-            RadioButton radioButton = new RadioButton(this);
-            radioButton.setText(choice);
-            answerGroup58.addView(radioButton);
-        }
-        surveyLayout.addView(answerGroup58);
-
-        TextView question59 = new TextView(this);
-        question59.setText("Interacting in crowded or noisy environments");
-        surveyLayout.addView(question59);
-
-        RadioGroup answerGroup59 = new RadioGroup(this);
-        String[] choices59 = {"Rarely", "Occasionally", "Frequently", "Almost always"};
-        for (String choice : choices59) {
-            RadioButton radioButton = new RadioButton(this);
-            radioButton.setText(choice);
-            answerGroup59.addView(radioButton);
-        }
-        surveyLayout.addView(answerGroup59);
-
-        TextView question510 = new TextView(this);
-        question510.setText("Listening to music or audio");
-        surveyLayout.addView(question510);
-
-        RadioGroup answerGroup510 = new RadioGroup(this);
-        String[] choices510 = {"Rarely", "Occasionally", "Frequently", "Almost always"};
-        for (String choice : choices510) {
-            RadioButton radioButton = new RadioButton(this);
-            radioButton.setText(choice);
-            answerGroup510.addView(radioButton);
-        }
-        surveyLayout.addView(answerGroup510);
-
-        if (answerCount == 10) {
-            btnSubmitSurvey.setEnabled(true);
-        }
+        return ""; // Return empty string if no option is selected
     }
 }
-

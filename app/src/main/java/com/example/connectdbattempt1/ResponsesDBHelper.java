@@ -53,7 +53,14 @@ public class ResponsesDBHelper extends SQLiteOpenHelper {
                 + "date DATETIME DEFAULT CURRENT_TIMESTAMP)";
         sqLiteDatabase.execSQL(createResultsTable);
 
+        String createSurveyTable = "CREATE TABLE SurveyResponses ("
+                + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + "Answer1 STRING,"
+                + "Answer2 STRING)";
+        sqLiteDatabase.execSQL(createSurveyTable);
+
     }
+
 
     public void clearResponsesTable(String response) {
         SQLiteDatabase db = this.getWritableDatabase();
