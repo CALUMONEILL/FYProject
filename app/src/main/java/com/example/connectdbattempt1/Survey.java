@@ -2,6 +2,7 @@ package com.example.connectdbattempt1;
 
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -33,6 +34,8 @@ public class Survey extends AppCompatActivity {
         // Initialize RadioGroups
         radioGroups[0] = findViewById(R.id.radio_group1);
         radioGroups[1] = findViewById(R.id.radio_group2);
+        radioGroups[2] = findViewById(R.id.radio_group3);
+        radioGroups[3] = findViewById(R.id.radio_group4);
         // Initialize RadioGroups for other questions
 
         submitButton = findViewById(R.id.btnSubmitSurvey);
@@ -43,16 +46,23 @@ public class Survey extends AppCompatActivity {
                 // Get selected radio button for each question
                 String answer1 = getSelectedRadioButtonText(radioGroups[0]);
                 String answer2 = getSelectedRadioButtonText(radioGroups[1]);
+                String answer3 = getSelectedRadioButtonText(radioGroups[2]);
+                String answer4 = getSelectedRadioButtonText(radioGroups[3]);
                 // Get selected radio buttons for other questions
 
                 // Insert responses into the database
                 ContentValues values = new ContentValues();
                 values.put("Answer1", answer1);
                 values.put("Answer2", answer2);
+                values.put("Answer3", answer3);
+                values.put("Answer4", answer4);
                 // Put values for other questions
                 sqLiteDatabase.insert("SurveyResponses", null, values);
 
                 Toast.makeText(Survey.this, "Survey submitted!", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(getApplicationContext(), TutorialYesNo.class);
+                startActivity(intent);
             }
         });
     }

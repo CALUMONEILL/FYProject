@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class ResponsesDBHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "dBhearingprofile";
-    private static final int DATABASE_VERSION = 9;
+    private static final int DATABASE_VERSION = 10;
 
     public static final String responses = "responses";
     public static final String response = "response";
@@ -56,7 +56,9 @@ public class ResponsesDBHelper extends SQLiteOpenHelper {
         String createSurveyTable = "CREATE TABLE SurveyResponses ("
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + "Answer1 STRING,"
-                + "Answer2 STRING)";
+                + "Answer2 STRING,"
+                + "Answer3 STRING,"
+                + "Answer4 STRING)";
         sqLiteDatabase.execSQL(createSurveyTable);
 
     }

@@ -18,12 +18,13 @@ public class Start extends AppCompatActivity {
     Button btnNext;
     TextView txtTutorial;
     ProgressBar progressBar;
-    private String[] texts = {"1Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis.",
-            "2Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis.",
-            "3Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis.",
-            "4Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis.",
-            "5Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis.",
-            "6Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis."};
+    private String[] texts = {
+            "Welcome to Hearphones.",
+            "To begin, you will complete a short survey before moving on to a tutorial.",
+            "The tutorial will cover how to complete two different kinds of hearing tests.",
+            "You will hear a sample tone or frequency played for a few seconds.",
+            "You will then submit your response. On completing the full test, you will receive your result.",
+            "Lets's go!"};
     private int currentIndex = 0;
 
     @Override
@@ -52,7 +53,7 @@ public class Start extends AppCompatActivity {
         btnHome1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Start.class);
+                Intent intent = new Intent(getApplicationContext(), Home3.class);
                 startActivity(intent);
             }
         });
@@ -68,7 +69,7 @@ public class Start extends AppCompatActivity {
             int color = getResources().getColor(R.color.green);
             progressBar.getProgressDrawable().setColorFilter(color, android.graphics.PorterDuff.Mode.SRC_IN);
 
-            Intent intent = new Intent(getApplicationContext(), TutorialYesNo.class);
+            Intent intent = new Intent(getApplicationContext(), Survey.class);
             startActivity(intent);
 
         }
