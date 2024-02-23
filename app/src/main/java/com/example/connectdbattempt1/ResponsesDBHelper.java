@@ -53,6 +53,7 @@ public class ResponsesDBHelper extends SQLiteOpenHelper {
                 + "date DATETIME DEFAULT CURRENT_TIMESTAMP)";
         sqLiteDatabase.execSQL(createResultsTable);
 
+        // Survey table creation code retrieved from ChatGPT https://chat.openai.com/share/1d089765-3568-4cf1-8641-e87db81c1ead
         String createSurveyTable = "CREATE TABLE SurveyResponses ("
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + "Answer1 STRING,"

@@ -18,6 +18,8 @@ public class Start extends AppCompatActivity {
     Button btnNext;
     TextView txtTutorial;
     ProgressBar progressBar;
+
+    // Text change code retrieved from ChatGPT: https://chat.openai.com/share/5c6e0bbc-235f-4378-a10a-4e3191c450b5
     private String[] texts = {
             "Welcome to Hearphones.",
             "To begin, you will complete a short survey before moving on to a tutorial.",
@@ -37,12 +39,12 @@ public class Start extends AppCompatActivity {
         txtTutorial = findViewById(R.id.txtTutorial);
         progressBar = findViewById(R.id.progressBar);
 
+
         txtTutorial.setText(texts[currentIndex]);
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //currentIndex = (currentIndex + 1) % texts.length;
 
                 txtTutorial.setText(texts[currentIndex]);
 
@@ -59,6 +61,8 @@ public class Start extends AppCompatActivity {
         });
     }
 
+    // Progress bar code retrieved and adapted from ChatGPT: https://chat.openai.com/share/f9884b73-dbb4-4d8b-aa4c-6864b9f277b1
+    // And this website: https://abhiandroid.com/ui/progressbar#gsc.tab=0
     private void increaseProgressBar() {
         if (currentIndex < progressBar.getMax()) {
             currentIndex++;
@@ -75,9 +79,8 @@ public class Start extends AppCompatActivity {
         }
     }
 
-    //Retrieved and adapted from ChatGPT: https://chat.openai.com/share/f9884b73-dbb4-4d8b-aa4c-6864b9f277b1
-    // And this website: https://abhiandroid.com/ui/progressbar#gsc.tab=0
-    //Retrieved and adapted from ChatGPT: https://chat.openai.com/c/ea8f5988-3e35-4382-90d6-2c629db0871f
+
+
 
 
 

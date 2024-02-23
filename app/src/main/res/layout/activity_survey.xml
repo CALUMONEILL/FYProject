@@ -49,6 +49,9 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/img_1" />
 
+    <!-- Framework for radio button layout retrieved from https://chat.openai.com/share/1d089765-3568-4cf1-8641-e87db81c1ead -->
+    <!-- Learned how to use the scroll view from ChatGPT originally but I cannot find the conversation. I implemented this scroll view code myself, but I learned how to do it from an external source initially -->
+    <!-- Survey questions retrieved from ChatGPT https://chat.openai.com/share/6e66c097-34b6-4c3d-bbb8-a845bb52a381 -->
     <ScrollView
         android:id="@+id/scrollView3"
         android:layout_width="wrap_content"
@@ -57,6 +60,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txtAnalytics5">
+
 
         <LinearLayout
             android:layout_width="match_parent"

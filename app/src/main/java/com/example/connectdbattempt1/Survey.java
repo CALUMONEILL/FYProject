@@ -31,32 +31,30 @@ public class Survey extends AppCompatActivity {
         dbHelper = new ResponsesDBHelper(this);
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase(); // This will create or open the existing database
 
-        // Initialize RadioGroups
+        // Survey database insert code retrieved from https://chat.openai.com/share/1d089765-3568-4cf1-8641-e87db81c1ead
         radioGroups[0] = findViewById(R.id.radio_group1);
         radioGroups[1] = findViewById(R.id.radio_group2);
         radioGroups[2] = findViewById(R.id.radio_group3);
         radioGroups[3] = findViewById(R.id.radio_group4);
-        // Initialize RadioGroups for other questions
+
 
         submitButton = findViewById(R.id.btnSubmitSurvey);
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Get selected radio button for each question
+
                 String answer1 = getSelectedRadioButtonText(radioGroups[0]);
                 String answer2 = getSelectedRadioButtonText(radioGroups[1]);
                 String answer3 = getSelectedRadioButtonText(radioGroups[2]);
                 String answer4 = getSelectedRadioButtonText(radioGroups[3]);
-                // Get selected radio buttons for other questions
 
-                // Insert responses into the database
                 ContentValues values = new ContentValues();
                 values.put("Answer1", answer1);
                 values.put("Answer2", answer2);
                 values.put("Answer3", answer3);
                 values.put("Answer4", answer4);
-                // Put values for other questions
+
                 sqLiteDatabase.insert("SurveyResponses", null, values);
 
                 Toast.makeText(Survey.this, "Survey submitted!", Toast.LENGTH_SHORT).show();
@@ -67,13 +65,13 @@ public class Survey extends AppCompatActivity {
         });
     }
 
-    // Helper method to get the text of the selected RadioButton in a RadioGroup
+
     private String getSelectedRadioButtonText(RadioGroup radioGroup) {
         int selectedId = radioGroup.getCheckedRadioButtonId();
         if (selectedId != -1) {
             RadioButton selectedRadioButton = findViewById(selectedId);
             return selectedRadioButton.getText().toString();
         }
-        return ""; // Return empty string if no option is selected
+        return "";
     }
 }
