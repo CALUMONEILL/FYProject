@@ -98,9 +98,9 @@ public class TestYesNo extends AppCompatActivity {
                 long newRowId = sqLiteDatabase.insert("responses", null, values);
 
                 if (newRowId != -1) {
-                    Toast.makeText(TestYesNo.this, "Submitted!", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(TestYesNo.this, "Submitted!", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(TestYesNo.this, "Not submitted", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(TestYesNo.this, "Not submitted", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -130,9 +130,9 @@ public class TestYesNo extends AppCompatActivity {
                 long newRowId = sqLiteDatabase.insert("responses", null, values);
 
                 if (newRowId != -1) {
-                    Toast.makeText(TestYesNo.this, "Submitted!", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(TestYesNo.this, "Submitted!", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(TestYesNo.this, "Not submitted", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(TestYesNo.this, "Not submitted", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -152,7 +152,7 @@ public class TestYesNo extends AppCompatActivity {
             int color = getResources().getColor(R.color.green);
             progressBar.getProgressDrawable().setColorFilter(color, android.graphics.PorterDuff.Mode.SRC_IN);
 
-            Intent intent = new Intent(getApplicationContext(), LoadingResults.class);
+            Intent intent = new Intent(getApplicationContext(), TestConfidence.class);
             startActivity(intent);
             mediaPlayer.stop();
         }
@@ -171,7 +171,7 @@ public class TestYesNo extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        Toast.makeText(this, "Audio Changed: " + currentAudioIndex, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Audio Changed: " + currentAudioIndex, Toast.LENGTH_SHORT).show();
     }
 
 

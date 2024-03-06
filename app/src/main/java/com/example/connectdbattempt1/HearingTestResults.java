@@ -18,6 +18,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class HearingTestResults extends AppCompatActivity {
 
     private com.example.connectdbattempt1.ResponsesDBHelper dbHelper;
+    private SQLiteDatabase sqLiteDatabase;
 
     FloatingActionButton btnHome;
     TextView txtFeedback1;
@@ -29,6 +30,7 @@ public class HearingTestResults extends AppCompatActivity {
         setContentView(R.layout.activity_hearing_test_results);
 
         dbHelper = new ResponsesDBHelper(this);
+        sqLiteDatabase = dbHelper.getWritableDatabase();
         //dbHelper.clearResultsTable("results");
 
         btnHome = findViewById(R.id.btnHome);
@@ -48,6 +50,7 @@ public class HearingTestResults extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Stats.class);
+                intent.putExtra("changeImages", true);
                 startActivity(intent);
             }
         });
@@ -58,8 +61,6 @@ public class HearingTestResults extends AppCompatActivity {
 
         String firstEntry = getFirstEntry();
         String sixthEntry = getSixthEntry();
-
-        Toast.makeText(HearingTestResults.this, firstEntry, Toast.LENGTH_SHORT).show();
 
         //Simple if else if statements - my own work
         if (yesCount == 6) {
@@ -72,7 +73,6 @@ public class HearingTestResults extends AppCompatActivity {
             txtFeedback1.setText("Your results suggest that you may have some hearing issues.");
         }
 
-        //Toast.makeText(this, "Yes count: " + yesCount + ", No count: " + noCount, Toast.LENGTH_SHORT).show();
         insertResult(yesCount);
         insertLowFreq(firstEntry);
         insertHighFreq(sixthEntry);
@@ -89,10 +89,10 @@ public class HearingTestResults extends AppCompatActivity {
         long newRowId = sqLiteDatabase.insert("results", null, values);
 
         if (newRowId != -1) {
-            Toast.makeText(HearingTestResults.this, "Submitted!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(HearingTestResults.this, "Submitted!", Toast.LENGTH_SHORT).show();
         } else {
             Log.d("RESULTS", "Result not submitting to dB");
-            Toast.makeText(HearingTestResults.this, "Not submitted", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(HearingTestResults.this, "Not submitted", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -118,10 +118,10 @@ public class HearingTestResults extends AppCompatActivity {
             int rowsAffected = sqLiteDatabase.update("results", values, "ROWID = ?", new String[]{String.valueOf(rowId)});
 
             if (rowsAffected > 0) {
-                Toast.makeText(HearingTestResults.this, "Updated first null lowFreq column!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(HearingTestResults.this, "Updated first null lowFreq column!", Toast.LENGTH_SHORT).show();
             } else {
                 Log.d("RESULTS", "Result not updating in dB");
-                Toast.makeText(HearingTestResults.this, "Update failed", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(HearingTestResults.this, "Update failed", Toast.LENGTH_SHORT).show();
             }
         } else {
 
@@ -131,10 +131,10 @@ public class HearingTestResults extends AppCompatActivity {
             long newRowId = sqLiteDatabase.insert("results", null, values);
 
             if (newRowId != -1) {
-                Toast.makeText(HearingTestResults.this, "Inserted new row!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(HearingTestResults.this, "Inserted new row!", Toast.LENGTH_SHORT).show();
             } else {
                 Log.d("RESULTS", "Result not inserting into dB");
-                Toast.makeText(HearingTestResults.this, "Insert failed", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(HearingTestResults.this, "Insert failed", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -161,10 +161,10 @@ public class HearingTestResults extends AppCompatActivity {
             int rowsAffected = sqLiteDatabase.update("results", values, "ROWID = ?", new String[]{String.valueOf(rowId)});
 
             if (rowsAffected > 0) {
-                Toast.makeText(HearingTestResults.this, "Updated first null highFreq column!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(HearingTestResults.this, "Updated first null highFreq column!", Toast.LENGTH_SHORT).show();
             } else {
                 Log.d("RESULTS", "Result not updating in dB");
-                Toast.makeText(HearingTestResults.this, "Update failed", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(HearingTestResults.this, "Update failed", Toast.LENGTH_SHORT).show();
             }
         } else {
 
@@ -174,10 +174,10 @@ public class HearingTestResults extends AppCompatActivity {
             long newRowId = sqLiteDatabase.insert("results", null, values);
 
             if (newRowId != -1) {
-                Toast.makeText(HearingTestResults.this, "Inserted new row!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(HearingTestResults.this, "Inserted new row!", Toast.LENGTH_SHORT).show();
             } else {
                 Log.d("RESULTS", "Result not inserting into dB");
-                Toast.makeText(HearingTestResults.this, "Insert failed", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(HearingTestResults.this, "Insert failed", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -260,6 +260,9 @@ public class HearingTestResults extends AppCompatActivity {
 
     }
 }
+
+
+
 
 
 

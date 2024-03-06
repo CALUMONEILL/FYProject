@@ -79,7 +79,7 @@ public class TestConfidence extends AppCompatActivity {
 
                 //Rating bar code adapted from https://abhiandroid.com/ui/ratingbar#gsc.tab=0
                 String userResponse = String.valueOf(rtbRate16.getRating());
-                Toast.makeText(getApplicationContext(), userResponse, Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), userResponse, Toast.LENGTH_LONG).show();
 
                 insertResponse(userResponse);
 
@@ -98,9 +98,9 @@ public class TestConfidence extends AppCompatActivity {
                 long newRowId = sqLiteDatabase.insert("ratings", null, values);
 
                 if (newRowId != -1) {
-                    Toast.makeText(TestConfidence.this, "Submitted!", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(TestConfidence.this, "Submitted!", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(TestConfidence.this, "Not submitted", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(TestConfidence.this, "Not submitted", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -119,7 +119,7 @@ public class TestConfidence extends AppCompatActivity {
             int color = getResources().getColor(R.color.green);
             progressBar.getProgressDrawable().setColorFilter(color, android.graphics.PorterDuff.Mode.SRC_IN);
 
-            Intent intent = new Intent(getApplicationContext(), Stats.class);
+            Intent intent = new Intent(getApplicationContext(), HearingTestResults.class);
             startActivity(intent);
             mediaPlayer.stop();
         }
@@ -138,7 +138,7 @@ public class TestConfidence extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        Toast.makeText(this, "Audio Changed: " + currentAudioIndex, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Audio Changed: " + currentAudioIndex, Toast.LENGTH_SHORT).show();
     }
 
 

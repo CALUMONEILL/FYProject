@@ -47,8 +47,10 @@
 
     <androidx.gridlayout.widget.GridLayout
         android:id="@+id/ScoreGrid"
-        android:layout_width="411dp"
-        android:layout_height="183dp"
+        android:layout_width="410dp"
+        android:layout_height="246dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnAll"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,10 +59,10 @@
 
         <TextView
             android:id="@+id/txtScoreTitle"
-            android:layout_width="237dp"
-            android:layout_height="32dp"
+            android:layout_width="211dp"
+            android:layout_height="wrap_content"
             android:fontFamily="@font/kumbh_sans"
-            android:text="   Your Current Score"
+            android:text="   Hearing Ability"
             android:textAlignment="textStart"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -69,8 +71,8 @@
 
         <TextView
             android:id="@+id/txtScoreNumber"
-            android:layout_width="238dp"
-            android:layout_height="70dp"
+            android:layout_width="212dp"
+            android:layout_height="wrap_content"
             android:fontFamily="@font/kumbh_sans"
             android:text="  0/6"
             android:textAlignment="textStart"
@@ -79,35 +81,19 @@
             app:layout_column="0"
             app:layout_row="1" />
 
-        <TextView
-            android:id="@+id/txtDesc1"
-            android:layout_width="173dp"
-            android:layout_height="66dp"
-            android:fontFamily="@font/kumbh_sans"
-            android:text="This calculates your ability to hear common frequencies"
-            android:textAlignment="viewStart"
-            android:textSize="14sp"
-            android:textStyle="bold"
+        <ImageView
+            android:id="@+id/imgHearing"
+            android:layout_width="46dp"
+            android:layout_height="41dp"
             app:layout_column="1"
-            app:layout_row="1" />
-
-        <Button
-            android:id="@+id/btnAll"
-            android:layout_width="169dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#2EDCCD"
-            android:text="See all results"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:cornerRadius="20dp"
-            app:layout_column="0"
-            app:layout_row="2" />
+            app:layout_row="1"
+            app:srcCompat="@drawable/same" />
 
         <TextView
             android:id="@+id/txtStruggle"
-            android:layout_width="170dp"
-            android:layout_height="38dp"
-            android:layout_marginEnd="16dp"
+            android:layout_width="198dp"
+            android:layout_height="51dp"
+            android:layout_marginEnd="12dp"
             android:fontFamily="@font/kumbh_sans"
             android:text="No results"
             android:textAlignment="viewStart"
@@ -116,33 +102,21 @@
             app:layout_column="1"
             app:layout_row="2" />
 
-    </androidx.gridlayout.widget.GridLayout>
-
-    <androidx.gridlayout.widget.GridLayout
-        android:id="@+id/RatingGrid"
-        android:layout_width="411dp"
-        android:layout_height="134dp"
-        android:layout_marginBottom="60dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnHome"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
-
         <TextView
             android:id="@+id/txtRatingTitle"
-            android:layout_width="237dp"
+            android:layout_width="211dp"
             android:layout_height="32dp"
             android:fontFamily="@font/kumbh_sans"
-            android:text="   Confidence Rating"
+            android:text="   Confidence"
             android:textAlignment="textStart"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_column="0"
-            app:layout_row="0" />
+            app:layout_row="3" />
 
         <TextView
             android:id="@+id/txtRatingNumber"
-            android:layout_width="238dp"
+            android:layout_width="211dp"
             android:layout_height="70dp"
             android:fontFamily="@font/kumbh_sans"
             android:text="  0/6"
@@ -150,33 +124,29 @@
             android:textSize="48sp"
             android:textStyle="bold"
             app:layout_column="0"
-            app:layout_row="1" />
+            app:layout_row="4" />
 
-        <TextView
-            android:id="@+id/txtDesc2"
-            android:layout_width="173dp"
-            android:layout_height="66dp"
-            android:fontFamily="@font/kumbh_sans"
-            android:text="This calculates your confidence in your hearing ability"
-            android:textAlignment="viewStart"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_column="1"
-            app:layout_row="1" />
+        <ImageView
+            android:id="@+id/imgConfidence"
+            android:layout_width="48dp"
+            android:layout_height="45dp"
+            app:srcCompat="@drawable/same" />
 
     </androidx.gridlayout.widget.GridLayout>
 
-    <View
-        android:id="@+id/divider7"
-        android:layout_width="409dp"
-        android:layout_height="1dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintBottom_toTopOf="@+id/RatingGrid"
+    <Button
+        android:id="@+id/btnAll"
+        android:layout_width="203dp"
+        android:layout_height="67dp"
+        android:layout_marginBottom="40dp"
+        android:backgroundTint="#2EDCCD"
+        android:text="See all results"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnHome"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ScoreGrid"
-        app:layout_constraintVertical_bias="0.493" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
     <!-- All icons used were retrieved from here: https://www.flaticon.com/ -->

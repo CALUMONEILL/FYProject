@@ -27,6 +27,7 @@ public class userData extends AppCompatActivity {
     private SQLiteDatabase sqLiteDatabase;
     FloatingActionButton btnHome;
     ListView lstResults;
+    ListView lstConfidence;
     ListView lstDate;
 
 
@@ -43,6 +44,7 @@ public class userData extends AppCompatActivity {
         btnHome = findViewById(R.id.btnHome);
         lstResults = findViewById(R.id.lstResults);
         lstDate = findViewById(R.id.lstDate);
+        lstConfidence = findViewById(R.id.lstConfidence);
 
         // Adapted and implemented code from this video: https://www.youtube.com/watch?v=dm-jan0YORg
         btnHome.setOnClickListener(new View.OnClickListener() {
@@ -131,6 +133,39 @@ public class userData extends AppCompatActivity {
         } finally {
             if (cursor2 != null) {
                 cursor2.close();
+            }
+        }
+
+        String query3 = "SELECT confidence FROM confidence";
+
+        //Adapted this code from ChatGPT
+        Cursor cursor3 = null;
+        try {
+            cursor3 = sqLiteDatabase.rawQuery(query3, null);
+
+            ArrayList<String> confidenceList = new ArrayList<>();
+
+            if (cursor3.moveToFirst()) {
+                do {
+
+                    String confidence = cursor3.getString(cursor3.getColumnIndexOrThrow("confidence"));
+
+                    confidenceList.add(confidence);
+                    // Adapted from Android Studio website
+                    lstConfidence.setDivider(null);
+
+                } while (cursor3.moveToNext());
+            }
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, confidenceList);
+
+            lstConfidence.setAdapter(adapter);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cursor3 != null) {
+                cursor3.close();
             }
         }
 

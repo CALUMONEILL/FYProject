@@ -57,7 +57,7 @@ public class Survey extends AppCompatActivity {
 
                 sqLiteDatabase.insert("SurveyResponses", null, values);
 
-                Toast.makeText(Survey.this, "Survey submitted!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(Survey.this, "Survey submitted!", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(getApplicationContext(), TutorialYesNo.class);
                 startActivity(intent);

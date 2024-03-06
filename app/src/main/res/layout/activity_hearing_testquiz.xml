@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/img_5"
-    tools:context=".Home">
+    tools:context=".TestYesNo">
 
 
     <!-- Logo created using website: https://looka.com/logo-maker/?gad_source=1&gclid=Cj0KCQiAwbitBhDIARIsABfFYIKMeEg99PHMVEDY9UhE-K-gLyfd_IL3VDdMUfqXU2yL8aZTAadF0PUaAvX_EALw_wcB -->
@@ -22,8 +22,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnYes"
-        app:layout_constraintVertical_bias="0.928"
         app:srcCompat="@drawable/ic_home_black_24dp" />
 
     <ImageView
@@ -74,11 +72,11 @@
 
     <TextView
         android:id="@+id/txtPrompt"
-        android:layout_width="252dp"
-        android:layout_height="53dp"
+        android:layout_width="253dp"
+        android:layout_height="76dp"
         android:layout_marginTop="12dp"
         android:fontFamily="@font/kumbh_sans"
-        android:text="How well could you hear the tone?"
+        android:text="Could you hear the tone?"
         android:textAlignment="center"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -89,57 +87,78 @@
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="250dp"
-        android:layout_height="37dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="253dp"
+        android:layout_height="36dp"
         android:indeterminate="false"
         android:max="6"
         android:progress="0"
         android:progressTint="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/btnOne"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.527"
+        app:layout_constraintHorizontal_bias="0.537"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPrompt" />
+        app:layout_constraintTop_toBottomOf="@+id/txtPrompt"
+        app:layout_constraintVertical_bias="0.303" />
 
     <TextView
         android:id="@+id/txtPlay"
-        android:layout_width="252dp"
-        android:layout_height="38dp"
+        android:layout_width="255dp"
+        android:layout_height="55dp"
         android:layout_marginTop="4dp"
         android:fontFamily="@font/kumbh_sans"
         android:text="Press the button below..."
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.525"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
-        android:id="@+id/btnYes"
-        android:layout_width="200dp"
-        android:layout_height="91dp"
-        android:layout_marginTop="8dp"
+        android:id="@+id/btnTwo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:backgroundTint="#2EDCCD"
         android:onClick="changeAudio"
-        android:text="Submit"
-        android:textSize="20sp"
+        android:text="2"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:cornerRadius="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rtbRate16" />
+        app:layout_constraintBottom_toTopOf="@+id/btnHome"
+        app:layout_constraintEnd_toStartOf="@+id/btnThree"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toEndOf="@+id/btnOne"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar"
+        app:layout_constraintVertical_bias="0.368" />
 
-    <RatingBar
-        android:id="@+id/rtbRate16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+    <Button
+        android:id="@+id/btnOne"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="72dp"
+        android:backgroundTint="#2EDCCD"
+        android:text="1"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnHome"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnThree"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="72dp"
+        android:backgroundTint="#2EDCCD"
+        android:onClick="changeAudio"
+        android:text="3"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnHome"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
     <!-- All icons used were retrieved from here: https://www.flaticon.com/ -->

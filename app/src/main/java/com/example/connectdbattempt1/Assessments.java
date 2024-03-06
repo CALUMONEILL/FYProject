@@ -14,7 +14,7 @@ public class Assessments extends AppCompatActivity {
 
     FloatingActionButton btnHome1;
     Button btnHearingTest;
-    Button btnConfidenceTest;
+
 
 
     @Override
@@ -24,7 +24,7 @@ public class Assessments extends AppCompatActivity {
 
         btnHome1 = findViewById(R.id.btnHome1);
         btnHearingTest = findViewById(R.id.btnHearingTest);
-        btnConfidenceTest = findViewById(R.id.btnConfidenceTest);
+
 
 
         btnHome1.setOnClickListener(new View.OnClickListener() {
@@ -43,13 +43,7 @@ public class Assessments extends AppCompatActivity {
             }
         });
 
-        btnConfidenceTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), TestConfidence.class);
-                startActivity(intent);
-            }
-        });
+
 
     }
 

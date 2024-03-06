@@ -53,6 +53,7 @@ public class Home3 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Stats.class);
+                intent.putExtra("changeImages", false);
                 startActivity(intent);
             }
         });

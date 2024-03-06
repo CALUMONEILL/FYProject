@@ -8,23 +8,37 @@
     android:background="@drawable/img_5"
     tools:context=".Home">
 
+    <ListView
+        android:id="@+id/lstResults"
+        android:layout_width="100dp"
+        android:layout_height="323dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="4dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/btnHome"
+        app:layout_constraintStart_toEndOf="@+id/lstDate"
+        app:layout_constraintTop_toBottomOf="@+id/txtAnalytics4"
+        app:layout_constraintVertical_bias="0.013" />
+
     <TextView
         android:id="@+id/txtAnalytics4"
-        android:layout_width="178dp"
-        android:layout_height="33dp"
+        android:layout_width="100dp"
+        android:layout_height="25dp"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/kumbh_sans"
-        android:text="Hearing Test Score"
+        android:text="Hearing Test"
         android:textAlignment="textStart"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/txtAnalytics6"
+        app:layout_constraintHorizontal_bias="0.447"
+        app:layout_constraintStart_toEndOf="@+id/txtAnalytics3"
         app:layout_constraintTop_toBottomOf="@+id/txtAnalytics" />
 
     <TextView
         android:id="@+id/txtAnalytics3"
-        android:layout_width="190dp"
-        android:layout_height="31dp"
+        android:layout_width="96dp"
+        android:layout_height="22dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/kumbh_sans"
@@ -32,10 +46,24 @@
         android:textAlignment="textStart"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/txtAnalytics4"
-        app:layout_constraintHorizontal_bias="0.833"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtAnalytics" />
+
+    <TextView
+        android:id="@+id/txtAnalytics6"
+        android:layout_width="100dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/kumbh_sans"
+        android:text="Confidence"
+        android:textAlignment="textStart"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/lstConfidence"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtAnalytics"
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnHome"
@@ -77,20 +105,22 @@
         app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
 
     <ListView
-        android:id="@+id/lstResults"
-        android:layout_width="174dp"
+        android:id="@+id/lstConfidence"
+        android:layout_width="100dp"
         android:layout_height="323dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:background="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/btnHome"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.571"
-        app:layout_constraintStart_toEndOf="@+id/lstDate"
-        app:layout_constraintTop_toBottomOf="@+id/txtAnalytics4" />
+        app:layout_constraintHorizontal_bias="0.606"
+        app:layout_constraintStart_toEndOf="@+id/lstResults"
+        app:layout_constraintTop_toBottomOf="@+id/txtAnalytics4"
+        app:layout_constraintVertical_bias="0.013" />
 
     <ListView
         android:id="@+id/lstDate"
-        android:layout_width="210dp"
-        android:layout_height="323dp"
+        android:layout_width="98dp"
+        android:layout_height="321dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
         android:background="#FFFFFF"

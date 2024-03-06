@@ -11,23 +11,6 @@
 
     <!-- Logo created using website: https://looka.com/logo-maker/?gad_source=1&gclid=Cj0KCQiAwbitBhDIARIsABfFYIKMeEg99PHMVEDY9UhE-K-gLyfd_IL3VDdMUfqXU2yL8aZTAadF0PUaAvX_EALw_wcB -->
 
-    <Button
-        android:id="@+id/btnConfidenceTest"
-        android:layout_width="396dp"
-        android:layout_height="97dp"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="#51E1D5"
-        android:text="Confidence Test"
-        android:textAlignment="textEnd"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:cornerRadius="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.533"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnHearingTest" />
-
     <TextView
         android:id="@+id/txtAnalytics2"
         android:layout_width="279dp"
@@ -58,29 +41,30 @@
         android:layout_height="97dp"
         android:layout_marginTop="36dp"
         android:backgroundTint="#73E7DE"
-        android:text="Hearing Test"
+        android:text="Begin Assessments"
         android:textAlignment="textStart"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
         android:textStyle="bold"
         app:cornerRadius="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnHome1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtAnalytics2" />
+        app:layout_constraintTop_toBottomOf="@+id/txtAnalytics2"
+        app:layout_constraintVertical_bias="0.036" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnHome1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="76dp"
         android:clickable="true"
         app:backgroundTint="#E2DCDE"
         app:fabCustomSize="75dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnConfidenceTest"
-        app:layout_constraintVertical_bias="0.684"
         app:srcCompat="@drawable/ic_home_black_24dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

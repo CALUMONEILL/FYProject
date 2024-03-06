@@ -5,11 +5,12 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class ResponsesDBHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "dBhearingprofile";
-    private static final int DATABASE_VERSION = 10;
+    private static final int DATABASE_VERSION = 12;
 
     public static final String responses = "responses";
     public static final String response = "response";
@@ -44,12 +45,18 @@ public class ResponsesDBHelper extends SQLiteOpenHelper {
                 + "date DATETIME DEFAULT CURRENT_TIMESTAMP)";
         sqLiteDatabase.execSQL(createRatingsTable);
 
+        String createConfidenceTable = "CREATE TABLE confidence ("
+                + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + "confidence REAL,"
+                + "date DATETIME DEFAULT CURRENT_TIMESTAMP)";
+        sqLiteDatabase.execSQL(createConfidenceTable);
+
         String createResultsTable = "CREATE TABLE results ("
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + "result INT,"
                 + "lowFreq STRING,"
                 + "highFreq STRING,"
-                + "rating STRING,"
+                + "rating REAL,"
                 + "date DATETIME DEFAULT CURRENT_TIMESTAMP)";
         sqLiteDatabase.execSQL(createResultsTable);
 
@@ -62,8 +69,13 @@ public class ResponsesDBHelper extends SQLiteOpenHelper {
                 + "Answer4 STRING)";
         sqLiteDatabase.execSQL(createSurveyTable);
 
-    }
+        String createAnswersTable = "CREATE TABLE answers ("
+                + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + "answer TEXT,"
+                + "date DATETIME DEFAULT CURRENT_TIMESTAMP)";
+        sqLiteDatabase.execSQL(createAnswersTable);
 
+    }
 
     public void clearResponsesTable(String response) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -80,8 +92,6 @@ public class ResponsesDBHelper extends SQLiteOpenHelper {
         db.delete(ratings, null, null);
     }
 
-
-
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS ratings");
@@ -89,4 +99,29 @@ public class ResponsesDBHelper extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
+    public double getSecondMostRecentConfidence() {
+        double secondMostRecentConfidence = 0.0;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // Selecting all entries ordered by date in descending order
+        Cursor cursor = db.rawQuery("SELECT confidence FROM confidence ORDER BY date DESC", null);
+
+        try {
+            // Move cursor to the second entry
+            if (cursor.moveToPosition(1)) {
+                // Retrieving confidence value from the second entry
+                secondMostRecentConfidence = cursor.getDouble(cursor.getColumnIndexOrThrow("confidence"));
+            } else {
+                Log.e("ResponsesDBHelper", "No second entry found");
+            }
+        } catch (Exception e) {
+            Log.e("ResponsesDBHelper", "Error: " + e.getMessage());
+        } finally {
+            cursor.close();
+            db.close();
+        }
+
+        return secondMostRecentConfidence;
+    }
 }
+
