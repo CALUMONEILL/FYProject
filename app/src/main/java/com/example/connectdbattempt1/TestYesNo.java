@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,6 +42,7 @@ public class TestYesNo extends AppCompatActivity {
     Button btnNo;
     Button btnPlay;
     ProgressBar progressBar;
+    TextView txtPrompt;
     int progressValue = 0;
 
 
@@ -66,6 +68,7 @@ public class TestYesNo extends AppCompatActivity {
         btnNo = findViewById(R.id.btnNo);
         progressBar = findViewById(R.id.progressBar);
         btnPlay = findViewById(R.id.btnPlay);
+        txtPrompt = findViewById(R.id.txtPrompt);
 
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,6 +89,7 @@ public class TestYesNo extends AppCompatActivity {
                 insertResponse(userResponse);
 
                 changePlayGreen();
+
             }
 
 

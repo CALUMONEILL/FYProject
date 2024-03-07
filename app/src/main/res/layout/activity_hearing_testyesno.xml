@@ -108,7 +108,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:fontFamily="@font/kumbh_sans"
-        android:text="Press the button below..."
+        android:text="Press play "
         android:textAlignment="center"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"

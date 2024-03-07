@@ -44,6 +44,7 @@ public class QuizTestResults extends AppCompatActivity {
         btnHome = findViewById(R.id.btnHome);
         txtFeedback1 = findViewById(R.id.txtFeedback);
         btnMore = findViewById(R.id.btnMore);
+        btnMore.setText("Back to Assessments");
 
         if (correct == 6) {
             txtFeedback1.setText("Your results suggest that you do not struggle with basic speech recognition.");
