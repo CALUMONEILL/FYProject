@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="108dp"
         android:fontFamily="@font/kumbh_sans"
-        android:text="Adjust your voume to a medium level (50%)"
+        android:text="Adjust your volume to a medium level (50%)"
         android:textAlignment="center"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/progressBar2"

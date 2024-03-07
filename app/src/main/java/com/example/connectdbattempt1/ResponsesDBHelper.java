@@ -10,7 +10,7 @@ import android.util.Log;
 public class ResponsesDBHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "dBhearingprofile";
-    private static final int DATABASE_VERSION = 12;
+    private static final int DATABASE_VERSION = 14;
 
     public static final String responses = "responses";
     public static final String response = "response";
@@ -77,6 +77,12 @@ public class ResponsesDBHelper extends SQLiteOpenHelper {
                 + "answer TEXT,"
                 + "date DATETIME DEFAULT CURRENT_TIMESTAMP)";
         sqLiteDatabase.execSQL(createAnswersTable);
+
+        String createQuizTable = "CREATE TABLE quiz ("
+                + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + "result INTEGER,"
+                + "date DATETIME DEFAULT CURRENT_TIMESTAMP)";
+        sqLiteDatabase.execSQL(createQuizTable);
 
     }
 

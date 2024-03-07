@@ -205,6 +205,60 @@ public class Stats extends AppCompatActivity {
         }
     }
 
+    private void fetchQuizResults() {
+        String[] projection = {
+                "result"
+        };
+
+        String sortOrder = "date DESC";
+
+        Cursor cursor = sqLiteDatabase.query(
+                "quiz",
+                projection,
+                null,
+                null,
+                null,
+                null,
+                sortOrder,
+                "2"
+        );
+
+        if (cursor != null) {
+            try {
+                if (cursor.moveToFirst()) {
+                    double currentResult = cursor.getInt(cursor.getColumnIndexOrThrow("result"));
+
+                    if (cursor.moveToNext()) {
+                        double previousResult = cursor.getInt(cursor.getColumnIndexOrThrow("result"));
+
+                        if (currentResult > previousResult) {
+                            //Log.d("Result0000", "Current result is higher than the previous one");
+                            //imgConfidence.setImageResource(R.drawable.up);
+                        } else if (currentResult < previousResult) {
+                            //Log.d("Result0000", "Current result is lower than the previous one");
+                            //imgConfidence.setImageResource(R.drawable.down);
+                        } else {
+                            //Log.d("Result0000", "Current result is equal to the previous one");
+                            //imgConfidence.setImageResource(R.drawable.same);
+                        }
+                    } else {
+                        //Log.d("Result0000", "Only one result found, cannot compare with previous result");
+
+                    }
+
+                    Log.d("Result0000", "Most Recent Result: " + currentResult);
+
+                    //txtRatingNumber.setText(" " + currentResult + "/5");
+
+                } else {
+                    Log.d("Result", "No results found");
+                }
+            } finally {
+                cursor.close();
+            }
+        }
+    }
+
     //Adapted from ChatGPT https://chat.openai.com/share/c4a3f9c1-407e-4f6d-aa64-3df288b7a4a9
     private void fetchMostRecentFreqs() {
         String[] projection = {

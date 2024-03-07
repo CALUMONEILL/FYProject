@@ -21,6 +21,7 @@ import java.util.Map;
 public class QuizTestResults extends AppCompatActivity {
 
     private ResponsesDBHelper dbHelper;
+    private SQLiteDatabase sqLiteDatabase;
 
     FloatingActionButton btnHome;
     TextView txtFeedback1;
@@ -35,9 +36,10 @@ public class QuizTestResults extends AppCompatActivity {
 
         dbHelper = new ResponsesDBHelper(this);
 
+
         readDataFromTable();
 
-
+        insertQuizResult(correct);
 
         btnHome = findViewById(R.id.btnHome);
         txtFeedback1 = findViewById(R.id.txtFeedback);
@@ -52,6 +54,8 @@ public class QuizTestResults extends AppCompatActivity {
         } else if (correct > 0 && correct <= 3) {
             txtFeedback1.setText("Your results suggest that you may have some hearing issues.");
         }
+
+
 
         // Adapted and implemented code from this video: https://www.youtube.com/watch?v=dm-jan0YORg
         btnHome.setOnClickListener(new View.OnClickListener() {
@@ -70,7 +74,20 @@ public class QuizTestResults extends AppCompatActivity {
             }
         });
 
+    }
 
+    private void insertQuizResult(int correct) {
+        sqLiteDatabase = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("result", correct);
+
+        long newRowId = sqLiteDatabase.insert("quiz", null, values);
+
+        if (newRowId != -1) {
+            Log.d("DATABASE", "Quiz result inserted successfully");
+        } else {
+            Log.d("DATABASE", "Failed to insert quiz result");
+        }
     }
 
     private void readDataFromTable() {
@@ -119,6 +136,7 @@ public class QuizTestResults extends AppCompatActivity {
                 }
             }
             cursor.close();
+
         }
 
         // Close the database connection
