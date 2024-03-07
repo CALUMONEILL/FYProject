@@ -58,6 +58,7 @@ Vine
             "Deep",
             "Think",
             "Vine",
+            "",
     };
 
     private String[] optionTwo = {
@@ -67,6 +68,7 @@ Vine
             "Deal",
             "Then",
             "Wine",
+            "",
     };
 
     private String[] optionThree = {
@@ -76,6 +78,7 @@ Vine
             "Deem",
             "Thin",
             "Fine",
+            "",
     };
     FloatingActionButton btnHome;
     Button btnOne;
@@ -92,7 +95,7 @@ Vine
         setContentView(R.layout.activity_hearing_testquiz);
 
         dbHelper = new ResponsesDBHelper(this);
-        dbHelper.clearResponsesTable("answers");
+        dbHelper.clearAnswersTable("answers");
 
 
         // Creating the Media Player on Create. The audio file location is defined in the brackets. Retrieved from ChatGPT with some additional work to make sure the file was in the right place and the naming was correct.
@@ -109,7 +112,7 @@ Vine
         btnTwo.setText(optionTwo[currentStringIndex]);
         btnThree.setText(optionThree[currentStringIndex]);
 
-        currentStringIndex = (currentAudioIndex + 1) % 6;
+        //currentStringIndex = currentAudioIndex;
 
 
 
@@ -125,14 +128,17 @@ Vine
         btnOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                changeAudio();
+
                 increaseProgressBar();
 
-                changeOptions();
                 String userResponse = optionOne[currentStringIndex];
-
                 insertResponse(userResponse);
                 currentStringIndex++;
+                changeAudio();
+                changeOptions();
+
+
+
 
             }
 
@@ -161,14 +167,17 @@ Vine
         btnTwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                changeAudio();
+
                 increaseProgressBar();
 
-                changeOptions();
                 String userResponse = optionTwo[currentStringIndex];
-
                 insertResponse(userResponse);
                 currentStringIndex++;
+                changeAudio();
+                changeOptions();
+
+
+
             }
 
             //Adapted from ChatGPT https://chat.openai.com/share/697f768c-1520-430b-aca5-49124fe28109
@@ -195,14 +204,17 @@ Vine
         btnThree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                changeAudio();
+
                 increaseProgressBar();
 
-                changeOptions();
                 String userResponse = optionThree[currentStringIndex];
-
                 insertResponse(userResponse);
                 currentStringIndex++;
+                changeAudio();
+                changeOptions();
+
+
+
             }
 
             //Adapted from ChatGPT https://chat.openai.com/share/697f768c-1520-430b-aca5-49124fe28109
@@ -255,7 +267,7 @@ Vine
 
 
 
-        Toast.makeText(this, "Audio Changed: " + currentAudioIndex, Toast.LENGTH_SHORT).show();
+
 
 
             mediaPlayer = new MediaPlayer();
@@ -266,7 +278,7 @@ Vine
                 e.printStackTrace();
             }
 
-            Toast.makeText(this, "Audio Changed: " + currentAudioIndex, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Audio Changed: " + currentAudioIndex, Toast.LENGTH_SHORT).show();
         }
 
     public void changeOptions() {
@@ -278,6 +290,7 @@ Vine
     public void playAudio (View view){
 
         mediaPlayer.start();
+        //Toast.makeText(this, "Audio Changed: " + currentAudioIndex, Toast.LENGTH_SHORT).show();
 
     }
 

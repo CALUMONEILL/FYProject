@@ -26,6 +26,8 @@ public class QuizTestResults extends AppCompatActivity {
     TextView txtFeedback1;
     Button btnMore;
 
+    int correct = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +42,16 @@ public class QuizTestResults extends AppCompatActivity {
         btnHome = findViewById(R.id.btnHome);
         txtFeedback1 = findViewById(R.id.txtFeedback);
         btnMore = findViewById(R.id.btnMore);
+
+        if (correct == 6) {
+            txtFeedback1.setText("Your results suggest that it is likely that you do not have any hearing issues.");
+        } else if (correct == 0) {
+            txtFeedback1.setText("Your results suggest that you may have some hearing issues.");
+        } else if (correct > 3 && correct <= 6) {
+            txtFeedback1.setText("Your results suggest that it is unlikely that you have any hearing issues.");
+        } else if (correct > 0 && correct <= 3) {
+            txtFeedback1.setText("Your results suggest that you may have some hearing issues.");
+        }
 
         // Adapted and implemented code from this video: https://www.youtube.com/watch?v=dm-jan0YORg
         btnHome.setOnClickListener(new View.OnClickListener() {
@@ -61,29 +73,18 @@ public class QuizTestResults extends AppCompatActivity {
 
     }
 
-    /*private void populateStringMappings() {
-        // Populate the map with unique strings corresponding to each entry
-        stringMappings.put("Team", "UniqueString1");
-        stringMappings.put("Chat", "UniqueString2");
-        stringMappings.put("Gaze", "UniqueString3");
-        stringMappings.put("Deep", "UniqueString4");
-        stringMappings.put("Thin", "UniqueString5");
-        stringMappings.put("Vine", "UniqueString6");
-        // Add more mappings as needed
-    }*/
-
     private void readDataFromTable() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
         // Query the database
         Cursor cursor = db.query(
-                "answers",                          // The table to query
-                new String[]{"answer"},          // The columns to return
-                null,                                      // The columns for the WHERE clause
-                null,                                      // The values for the WHERE clause
-                null,                                      // don't group the rows
-                null,                                      // don't filter by row groups
-                null                                      // The sort order
+                "answers",
+                new String[]{"answer"},
+                null,
+                null,
+                null,
+                null,
+                null
         );
 
         // Iterate over the cursor
@@ -92,11 +93,29 @@ public class QuizTestResults extends AppCompatActivity {
                 // Get the response from the cursor
                 String response = cursor.getString(cursor.getColumnIndexOrThrow("answer"));
 
-                // Compare the response with your target string
+
                 if (response.equals("Team")) {
-                    // Perform the action you want if the response matches the target string
-                    // For example, show a toast message
-                    Toast.makeText(this, "Response matches the target string!", Toast.LENGTH_SHORT).show();
+                    correct++;
+                }
+
+                if (response.equals("Chat")) {
+                    correct++;
+                }
+
+                if (response.equals("Gaze")) {
+                    correct++;
+                }
+
+                if (response.equals("Deep")) {
+                    correct++;
+                }
+
+                if (response.equals("Thin")) {
+                    correct++;
+                }
+
+                if (response.equals("Vine")) {
+                    correct++;
                 }
             }
             cursor.close();

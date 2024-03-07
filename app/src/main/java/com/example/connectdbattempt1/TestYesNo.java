@@ -3,6 +3,8 @@ package com.example.connectdbattempt1;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -36,8 +39,11 @@ public class TestYesNo extends AppCompatActivity {
     FloatingActionButton btnHome;
     Button btnYes;
     Button btnNo;
+    Button btnPlay;
     ProgressBar progressBar;
     int progressValue = 0;
+
+
 
     private com.example.connectdbattempt1.ResponsesDBHelper dbHelper;
 
@@ -59,9 +65,7 @@ public class TestYesNo extends AppCompatActivity {
         btnYes = findViewById(R.id.btnTutorial);
         btnNo = findViewById(R.id.btnNo);
         progressBar = findViewById(R.id.progressBar);
-
-
-
+        btnPlay = findViewById(R.id.btnPlay);
 
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +74,6 @@ public class TestYesNo extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
         btnYes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,6 +85,7 @@ public class TestYesNo extends AppCompatActivity {
 
                 insertResponse(userResponse);
 
+                changePlayGreen();
             }
 
 
@@ -115,6 +119,8 @@ public class TestYesNo extends AppCompatActivity {
                 String userResponse = "No";
 
                 insertResponse(userResponse);
+
+                changePlayGreen();
             }
 
             //Adapted from ChatGPT https://chat.openai.com/share/697f768c-1520-430b-aca5-49124fe28109
@@ -138,6 +144,18 @@ public class TestYesNo extends AppCompatActivity {
 
         });
 
+    }
+
+    private void changePlayBlack() {
+        Drawable playBackground = btnPlay.getForeground();
+        int tintColor = ContextCompat.getColor(this, R.color.black);
+        playBackground.setColorFilter(tintColor, PorterDuff.Mode.SRC_IN);
+    }
+
+    private void changePlayGreen() {
+        Drawable playBackground = btnPlay.getForeground();
+        int tintColor = ContextCompat.getColor(this, R.color.green2);
+        playBackground.setColorFilter(tintColor, PorterDuff.Mode.SRC_IN);
     }
 
     //Retrieved and adapted from ChatGPT: https://chat.openai.com/share/f9884b73-dbb4-4d8b-aa4c-6864b9f277b1
@@ -177,7 +195,9 @@ public class TestYesNo extends AppCompatActivity {
 
     public void playAudio (View view){
         mediaPlayer.start();
+        changePlayBlack();
     }
+
 
     // I know that onDestroy methods are good practice from previous coding projects/work experience.
     // Customised based on ChatGPT recommendations

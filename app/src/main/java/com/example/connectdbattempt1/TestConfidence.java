@@ -3,6 +3,8 @@ package com.example.connectdbattempt1;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,6 +15,7 @@ import android.widget.RatingBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -38,7 +41,7 @@ public class TestConfidence extends AppCompatActivity {
     Button btnYes;
     Button btnNo;
     ProgressBar progressBar;
-
+    Button btnPlay;
     RatingBar rtbRate16;
     int progressValue = 0;
 
@@ -62,6 +65,7 @@ public class TestConfidence extends AppCompatActivity {
         btnYes = findViewById(R.id.btnYes);
         progressBar = findViewById(R.id.progressBar);
         rtbRate16 = findViewById(R.id.rtbRate16);
+        btnPlay = findViewById(R.id.btnPlay);
 
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,10 +83,11 @@ public class TestConfidence extends AppCompatActivity {
 
                 //Rating bar code adapted from https://abhiandroid.com/ui/ratingbar#gsc.tab=0
                 String userResponse = String.valueOf(rtbRate16.getRating());
-                //Toast.makeText(getApplicationContext(), userResponse, Toast.LENGTH_LONG).show();
+                rtbRate16.setRating(0);
 
                 insertResponse(userResponse);
 
+                changePlayGreen();
             }
 
             //Adapted from ChatGPT https://chat.openai.com/share/697f768c-1520-430b-aca5-49124fe28109
@@ -107,6 +112,18 @@ public class TestConfidence extends AppCompatActivity {
 
     }
 
+    private void changePlayBlack() {
+        Drawable playBackground = btnPlay.getForeground();
+        int tintColor = ContextCompat.getColor(this, R.color.black);
+        playBackground.setColorFilter(tintColor, PorterDuff.Mode.SRC_IN);
+    }
+
+    private void changePlayGreen() {
+        Drawable playBackground = btnPlay.getForeground();
+        int tintColor = ContextCompat.getColor(this, R.color.green2);
+        playBackground.setColorFilter(tintColor, PorterDuff.Mode.SRC_IN);
+    }
+
     //Retrieved and adapted from ChatGPT: https://chat.openai.com/share/f9884b73-dbb4-4d8b-aa4c-6864b9f277b1
     // And this website: https://abhiandroid.com/ui/progressbar#gsc.tab=0
     private void increaseProgressBar() {
@@ -119,7 +136,7 @@ public class TestConfidence extends AppCompatActivity {
             int color = getResources().getColor(R.color.green);
             progressBar.getProgressDrawable().setColorFilter(color, android.graphics.PorterDuff.Mode.SRC_IN);
 
-            Intent intent = new Intent(getApplicationContext(), HearingTestResults.class);
+            Intent intent = new Intent(getApplicationContext(), LoadingResults.class);
             startActivity(intent);
             mediaPlayer.stop();
         }
@@ -144,6 +161,7 @@ public class TestConfidence extends AppCompatActivity {
 
     public void playAudio (View view){
         mediaPlayer.start();
+        changePlayBlack();
     }
 
     // I know that onDestroy methods are good practice from previous coding projects/work experience.

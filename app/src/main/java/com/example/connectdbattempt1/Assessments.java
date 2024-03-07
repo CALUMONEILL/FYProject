@@ -14,7 +14,7 @@ public class Assessments extends AppCompatActivity {
 
     FloatingActionButton btnHome1;
     Button btnHearingTest;
-
+    Button btnQuiz;
 
 
     @Override
@@ -24,7 +24,7 @@ public class Assessments extends AppCompatActivity {
 
         btnHome1 = findViewById(R.id.btnHome1);
         btnHearingTest = findViewById(R.id.btnHearingTest);
-
+        btnQuiz = findViewById(R.id.btnQuiz);
 
 
         btnHome1.setOnClickListener(new View.OnClickListener() {
@@ -38,7 +38,15 @@ public class Assessments extends AppCompatActivity {
         btnHearingTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), TestYesNo.class);
+                Intent intent = new Intent(getApplicationContext(), Volume.class);
+                startActivity(intent);
+            }
+        });
+
+        btnQuiz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), TestQuiz.class);
                 startActivity(intent);
             }
         });

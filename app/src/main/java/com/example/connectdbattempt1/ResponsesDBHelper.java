@@ -15,6 +15,9 @@ public class ResponsesDBHelper extends SQLiteOpenHelper {
     public static final String responses = "responses";
     public static final String response = "response";
 
+    public static final String answers = "answers";
+    public static final String answer = "answer";
+
     public static final String ratings = "ratings";
 
     public static final String rating = "rating";
@@ -80,6 +83,11 @@ public class ResponsesDBHelper extends SQLiteOpenHelper {
     public void clearResponsesTable(String response) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(responses, null, null);
+    }
+
+    public void clearAnswersTable(String answer) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(answers, null, null);
     }
 
     public void clearResultsTable(String result) {
