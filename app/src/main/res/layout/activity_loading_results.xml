@@ -24,7 +24,7 @@
     <TextView
         android:id="@+id/txtPlay2"
         android:layout_width="255dp"
-        android:layout_height="55dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="108dp"
         android:fontFamily="@font/kumbh_sans"
         android:text="Loading your results..."

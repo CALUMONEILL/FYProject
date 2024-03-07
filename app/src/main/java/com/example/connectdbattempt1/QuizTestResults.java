@@ -46,13 +46,13 @@ public class QuizTestResults extends AppCompatActivity {
         btnMore = findViewById(R.id.btnMore);
 
         if (correct == 6) {
-            txtFeedback1.setText("Your results suggest that it is likely that you do not have any hearing issues.");
+            txtFeedback1.setText("Your results suggest that you do not struggle with basic speech recognition.");
         } else if (correct == 0) {
-            txtFeedback1.setText("Your results suggest that you may have some hearing issues.");
+            txtFeedback1.setText("Your results suggest that you struggle with basic speech recognition.");
         } else if (correct > 3 && correct <= 6) {
-            txtFeedback1.setText("Your results suggest that it is unlikely that you have any hearing issues.");
+            txtFeedback1.setText("Your results suggest that it is unlikely that you struggle with basic speech recognition.");
         } else if (correct > 0 && correct <= 3) {
-            txtFeedback1.setText("Your results suggest that you may have some hearing issues.");
+            txtFeedback1.setText("Your results suggest that you may struggle with basic speech recognition.");
         }
 
 
@@ -69,7 +69,7 @@ public class QuizTestResults extends AppCompatActivity {
         btnMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Stats.class);
+                Intent intent = new Intent(getApplicationContext(), Assessments.class);
                 startActivity(intent);
             }
         });

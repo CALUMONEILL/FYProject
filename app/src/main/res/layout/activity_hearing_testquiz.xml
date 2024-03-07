@@ -45,7 +45,7 @@
         android:ellipsize="none"
         android:fontFamily="@font/kumbh_sans"
         android:foreground="@drawable/play"
-        android:foregroundTint="#000000"
+        android:foregroundTint="#5CF64A"
         android:foregroundTintMode="src_atop"
 
         android:hapticFeedbackEnabled="true"
@@ -73,10 +73,10 @@
     <TextView
         android:id="@+id/txtPrompt"
         android:layout_width="253dp"
-        android:layout_height="76dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:fontFamily="@font/kumbh_sans"
-        android:text="Could you hear the tone?"
+        android:text="Select the word you heard from the three options"
         android:textAlignment="center"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"

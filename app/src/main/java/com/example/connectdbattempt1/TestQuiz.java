@@ -1,10 +1,13 @@
 package com.example.connectdbattempt1;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -84,6 +87,7 @@ Vine
     Button btnOne;
     Button btnTwo;
     Button btnThree;
+    Button btnPlay;
     ProgressBar progressBar;
     int progressValue = 0;
 
@@ -106,6 +110,7 @@ Vine
         btnOne = findViewById(R.id.btnOne);
         btnTwo = findViewById(R.id.btnTwo);
         btnThree = findViewById(R.id.btnThree);
+        btnPlay = findViewById(R.id.btnPlay);
         progressBar = findViewById(R.id.progressBar);
 
         btnOne.setText(optionOne[currentStringIndex]);
@@ -136,7 +141,7 @@ Vine
                 currentStringIndex++;
                 changeAudio();
                 changeOptions();
-
+                changePlayGreen();
 
 
 
@@ -175,7 +180,7 @@ Vine
                 currentStringIndex++;
                 changeAudio();
                 changeOptions();
-
+                changePlayGreen();
 
 
             }
@@ -212,7 +217,7 @@ Vine
                 currentStringIndex++;
                 changeAudio();
                 changeOptions();
-
+                changePlayGreen();
 
 
             }
@@ -237,6 +242,18 @@ Vine
             }
 
         });
+    }
+
+    private void changePlayBlack() {
+        Drawable playBackground = btnPlay.getForeground();
+        int tintColor = ContextCompat.getColor(this, R.color.black);
+        playBackground.setColorFilter(tintColor, PorterDuff.Mode.SRC_IN);
+    }
+
+    private void changePlayGreen() {
+        Drawable playBackground = btnPlay.getForeground();
+        int tintColor = ContextCompat.getColor(this, R.color.green2);
+        playBackground.setColorFilter(tintColor, PorterDuff.Mode.SRC_IN);
     }
 
     //Retrieved and adapted from ChatGPT: https://chat.openai.com/share/f9884b73-dbb4-4d8b-aa4c-6864b9f277b1
@@ -290,7 +307,7 @@ Vine
     public void playAudio (View view){
 
         mediaPlayer.start();
-        //Toast.makeText(this, "Audio Changed: " + currentAudioIndex, Toast.LENGTH_SHORT).show();
+        changePlayBlack();
 
     }
 

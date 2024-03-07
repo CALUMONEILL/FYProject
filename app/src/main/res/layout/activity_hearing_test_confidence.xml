@@ -47,7 +47,7 @@
         android:ellipsize="none"
         android:fontFamily="@font/kumbh_sans"
         android:foreground="@drawable/play"
-        android:foregroundTint="#000000"
+        android:foregroundTint="#5CF64A"
         android:foregroundTintMode="src_atop"
 
         android:hapticFeedbackEnabled="true"
