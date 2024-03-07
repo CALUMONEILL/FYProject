@@ -5,6 +5,7 @@
     android:id="@+id/divNavigation"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/img_5"
     tools:context=".Home">
 
 
@@ -74,7 +75,7 @@
     <TextView
         android:id="@+id/txtPrompt"
         android:layout_width="252dp"
-        android:layout_height="53dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:fontFamily="@font/kumbh_sans"
         android:text="How well could you hear the tone?"
@@ -155,7 +156,7 @@
     <TextView
         android:id="@+id/txtInfo1"
         android:layout_width="303dp"
-        android:layout_height="338dp"
+        android:layout_height="355dp"
         android:background="#FFFDFD"
         android:fontFamily="@font/kumbh_sans"
         android:text="This is the Confidence Test page."
@@ -170,7 +171,7 @@
     <TextView
         android:id="@+id/txtInfo2"
         android:layout_width="286dp"
-        android:layout_height="92dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:background="#FFFDFD"
         android:fontFamily="@font/kumbh_sans"
@@ -197,7 +198,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.453" />
 
     <Button
         android:id="@+id/btnNext3"
@@ -214,7 +216,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.453" />
 
     <Button
         android:id="@+id/btnNext4"
@@ -231,7 +234,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.453" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
     <!-- All icons used were retrieved from here: https://www.flaticon.com/ -->

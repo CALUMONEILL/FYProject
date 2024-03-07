@@ -37,10 +37,12 @@ public class Start extends AppCompatActivity {
         btnHome1 = findViewById(R.id.btnHome1);
         btnNext = findViewById(R.id.btnNext);
         txtTutorial = findViewById(R.id.txtTutorial);
+        txtTutorial.setText("Hello");
         progressBar = findViewById(R.id.progressBar);
 
 
-        txtTutorial.setText(texts[currentIndex]);
+
+        //txtTutorial.setText(texts[currentIndex]);
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override

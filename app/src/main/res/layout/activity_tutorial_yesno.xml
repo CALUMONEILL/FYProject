@@ -105,7 +105,7 @@
     <TextView
         android:id="@+id/txtPlay"
         android:layout_width="255dp"
-        android:layout_height="55dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:fontFamily="@font/kumbh_sans"
         android:text="Press the button below..."
@@ -162,8 +162,8 @@
 
     <TextView
         android:id="@+id/txtInfo1"
-        android:layout_width="303dp"
-        android:layout_height="338dp"
+        android:layout_width="306dp"
+        android:layout_height="355dp"
         android:layout_marginTop="4dp"
         android:background="#FFFDFD"
         android:fontFamily="@font/kumbh_sans"
@@ -178,7 +178,7 @@
     <TextView
         android:id="@+id/txtInfo2"
         android:layout_width="286dp"
-        android:layout_height="92dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:background="#FFFDFD"
         android:fontFamily="@font/kumbh_sans"
@@ -205,7 +205,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.471" />
 
     <Button
         android:id="@+id/btnNext3"
@@ -222,7 +223,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.471" />
 
     <Button
         android:id="@+id/btnNext4"
@@ -239,7 +241,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.471" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
     <!-- All icons used were retrieved from here: https://www.flaticon.com/ -->

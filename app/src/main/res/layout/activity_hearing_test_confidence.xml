@@ -75,7 +75,7 @@
     <TextView
         android:id="@+id/txtPrompt"
         android:layout_width="252dp"
-        android:layout_height="53dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:fontFamily="@font/kumbh_sans"
         android:text="How well could you hear the tone?"
