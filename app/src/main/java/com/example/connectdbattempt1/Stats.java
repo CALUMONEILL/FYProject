@@ -39,6 +39,7 @@ public class Stats extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stats);
 
+        // Retrieved from ChatGPT https://chat.openai.com/share/971f66ba-c375-4ad0-adab-e3f25f67f50b
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("changeImages")) {
             shouldChangeImages = intent.getBooleanExtra("changeImages", true);
@@ -66,13 +67,14 @@ public class Stats extends AppCompatActivity {
         Double averageRating = fetchAndCalculateAverageRating();
 
 
-
+        // Retrieved from ChatGPT https://chat.openai.com/share/971f66ba-c375-4ad0-adab-e3f25f67f50b
         if (shouldChangeImages) {
             insertAverageRating(averageRating);
 
 
         }
 
+        // Retrieved from ChatGPT https://chat.openai.com/share/7b8dd038-58fa-42b0-8308-472461e50d98
         compareConfidenceWithRating(averageRating);
 
 
@@ -151,6 +153,7 @@ public class Stats extends AppCompatActivity {
         }
     }
 
+    // Copied from fetchResults which was based on its own ChatGPT search
     private void fetchRatings() {
         String[] projection = {
                 "rating"
@@ -177,6 +180,7 @@ public class Stats extends AppCompatActivity {
                     if (cursor.moveToNext()) {
                         double previousResult = cursor.getInt(cursor.getColumnIndexOrThrow("rating"));
 
+                        // Icons retrieved from https://www.freepik.com/
                         if (currentResult > previousResult) {
                             //Log.d("Result0000", "Current result is higher than the previous one");
                             imgConfidence.setImageResource(R.drawable.up);
@@ -205,59 +209,8 @@ public class Stats extends AppCompatActivity {
         }
     }
 
-    private void fetchQuizResults() {
-        String[] projection = {
-                "result"
-        };
 
-        String sortOrder = "date DESC";
 
-        Cursor cursor = sqLiteDatabase.query(
-                "quiz",
-                projection,
-                null,
-                null,
-                null,
-                null,
-                sortOrder,
-                "2"
-        );
-
-        if (cursor != null) {
-            try {
-                if (cursor.moveToFirst()) {
-                    double currentResult = cursor.getInt(cursor.getColumnIndexOrThrow("result"));
-
-                    if (cursor.moveToNext()) {
-                        double previousResult = cursor.getInt(cursor.getColumnIndexOrThrow("result"));
-
-                        if (currentResult > previousResult) {
-                            //Log.d("Result0000", "Current result is higher than the previous one");
-                            //imgConfidence.setImageResource(R.drawable.up);
-                        } else if (currentResult < previousResult) {
-                            //Log.d("Result0000", "Current result is lower than the previous one");
-                            //imgConfidence.setImageResource(R.drawable.down);
-                        } else {
-                            //Log.d("Result0000", "Current result is equal to the previous one");
-                            //imgConfidence.setImageResource(R.drawable.same);
-                        }
-                    } else {
-                        //Log.d("Result0000", "Only one result found, cannot compare with previous result");
-
-                    }
-
-                    Log.d("Result0000", "Most Recent Result: " + currentResult);
-
-                    //txtRatingNumber.setText(" " + currentResult + "/5");
-
-                } else {
-                    Log.d("Result", "No results found");
-                }
-            } finally {
-                cursor.close();
-            }
-        }
-    }
 
     //Adapted from ChatGPT https://chat.openai.com/share/c4a3f9c1-407e-4f6d-aa64-3df288b7a4a9
     private void fetchMostRecentFreqs() {
@@ -360,26 +313,28 @@ public class Stats extends AppCompatActivity {
         return 0.0;
     }
 
+    // Retrieved from ChatGPT https://chat.openai.com/share/7b8dd038-58fa-42b0-8308-472461e50d98
     public void compareConfidenceWithRating(double averageRating) {
         //ResponsesDBHelper dbHelper = new ResponsesDBHelper();
         double secondMostRecentConfidence = dbHelper.getSecondMostRecentConfidence();
 
         if (secondMostRecentConfidence > averageRating) {
             // Second most recent confidence is greater than averageRating
-            Log.d("StatsWahey", "Second most recent confidence is greater than average rating.");
+            Log.d("Stats", "Second most recent confidence is greater than average rating.");
             imgConfidence.setImageResource(R.drawable.down);
         } else if (secondMostRecentConfidence < averageRating) {
             // Second most recent confidence is lesser than averageRating
-            Log.d("StatsWahey", "Second most recent confidence is lesser than average rating.");
+            Log.d("Stats", "Second most recent confidence is lesser than average rating.");
             imgConfidence.setImageResource(R.drawable.up);
         } else {
             // Second most recent confidence is equal to averageRating
-            Log.d("StatsWahey", "Second most recent confidence is equal to average rating.");
+            Log.d("Stats", "Second most recent confidence is equal to average rating.");
             imgConfidence.setImageResource(R.drawable.same);
         }
     }
 
 
+    // Retrieved from ChatGPT https://chat.openai.com/share/ad7aa1e0-82c5-453a-9a58-fd1385f6f6b0
     private void insertAverageRating(double averageRating) {
         ContentValues values = new ContentValues();
         values.put("confidence", averageRating);

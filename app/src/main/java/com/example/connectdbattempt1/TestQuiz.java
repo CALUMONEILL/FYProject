@@ -54,6 +54,8 @@ Vine
  */
 
 
+    // NU-6 Words retrieved from https://www.audiologyonline.com/articles/word-recognition-testing-puzzling-disconnect-11978
+    // Did more research on these lists with ChatGPT https://chat.openai.com/share/4bf2e76a-5341-4d40-b6ba-4b69ac905a37
     private String[] optionOne = {
             "Team",
             "Chant",
@@ -244,6 +246,7 @@ Vine
         });
     }
 
+    // Retrieved from ChatGPT https://chat.openai.com/share/7bbc9a75-2dff-4560-80d7-2242b537e10d
     private void changePlayBlack() {
         Drawable playBackground = btnPlay.getForeground();
         int tintColor = ContextCompat.getColor(this, R.color.black);

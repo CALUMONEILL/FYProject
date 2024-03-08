@@ -25,6 +25,7 @@ public class QuizTestResults extends AppCompatActivity {
 
     FloatingActionButton btnHome;
     TextView txtFeedback1;
+    TextView txtResults;
     Button btnMore;
 
     int correct = 0;
@@ -32,7 +33,7 @@ public class QuizTestResults extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hearing_test_results);
+        setContentView(R.layout.activity_quiz_test_results);
 
         dbHelper = new ResponsesDBHelper(this);
 
@@ -42,7 +43,8 @@ public class QuizTestResults extends AppCompatActivity {
         insertQuizResult(correct);
 
         btnHome = findViewById(R.id.btnHome);
-        txtFeedback1 = findViewById(R.id.txtFeedback);
+        txtFeedback1 = findViewById(R.id.txtFeedback1);
+        txtResults = findViewById(R.id.txtResult);
         btnMore = findViewById(R.id.btnMore);
         btnMore.setText("Back to Assessments");
 
@@ -56,7 +58,9 @@ public class QuizTestResults extends AppCompatActivity {
             txtFeedback1.setText("Your results suggest that you may struggle with basic speech recognition.");
         }
 
+        String correctString = String.valueOf(correct);
 
+        txtResults.setText(correctString + "/6");
 
         // Adapted and implemented code from this video: https://www.youtube.com/watch?v=dm-jan0YORg
         btnHome.setOnClickListener(new View.OnClickListener() {
@@ -77,6 +81,7 @@ public class QuizTestResults extends AppCompatActivity {
 
     }
 
+    // Learned from previous code that used information from ChatGPT
     private void insertQuizResult(int correct) {
         sqLiteDatabase = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -91,6 +96,7 @@ public class QuizTestResults extends AppCompatActivity {
         }
     }
 
+    // Adapted from ChatGPT https://chat.openai.com/share/4d10053b-bc5c-4238-82f9-b6e91814ff0c
     private void readDataFromTable() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
@@ -144,24 +150,6 @@ public class QuizTestResults extends AppCompatActivity {
         db.close();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // https://chat.openai.com/share/24823636-4276-419c-912f-7f192c4e5710
 // https://www.youtube.com/watch?v=dm-jan0YORg
